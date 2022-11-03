@@ -1,7 +1,7 @@
 <?php 
 
   session_start();
-    var_dump('test');
+
   $conn = new mysqli ("127.0.0.1", "oskar", "zaq1@WSX", "domex");
 
   if ($conn->connect_error) {
