@@ -2,10 +2,8 @@
     session_start();
     ini_set( 'display_errors', 'On' ); 
     error_reporting( E_ALL );
-    $conn = new mysqli ("127.0.0.1", "oskar", "zaq1@WSX", "domex");
-    if ($conn->connect_error) {
-        die("Connection Failed: " . $conn->connect_error);
-    }
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
     $Zapytanie =  "SELECT Nazwisko,Imie,OsobaId
     FROM Uzytkownicy WHERE Email='".$_POST["login"]."' AND Haslo='".$_POST["haslo"]."'";
     $result = mysqli_query($conn, $Zapytanie);

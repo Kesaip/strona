@@ -56,7 +56,7 @@ error_reporting( E_ALL );
             <th scope="col">Plik</th>
           </tr>
 <?php
-$katalog="/var/www/domex/uploads";
+$katalog="/Users/oskar/Desktop/stronyglowne/uploads";//"/var/www/domex/uploads";
 $helena = 0;
 
 

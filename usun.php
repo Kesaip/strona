@@ -8,10 +8,8 @@ header("location: php.php");
 ini_set( 'display_errors', 'On' ); 
 error_reporting( E_ALL );
 
-$conn = new mysqli ("127.0.0.1", "oskar", "zaq1@WSX", "domex");
-if ($conn->connect_error) {
-    die("Connection Failed: " . $conn->connect_error);
-}
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
 
 if ($_SESSION['Id'] != $_GET['id']) {
   print($_GET["id"]);

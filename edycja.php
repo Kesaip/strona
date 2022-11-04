@@ -21,12 +21,8 @@ $data=date("Y-m-d");
 $Zmiana=0;
 // PRINT($data);
 
-$conn = new mysqli ("127.0.0.1", "oskar", "zaq1@WSX", "domex");
-if ($conn->connect_error) {
-    die("Connection Failed: " . $conn->connect_error);
-}
-
-
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
 $Zapytanie =  "SELECT Nazwisko,Imie,Login,Haslo FROM Pracownicy WHERE PracownikId='".$_POST['id']."'";
     $result = mysqli_query($conn, $Zapytanie);
     //   $row = mysqli_fetch_assoc($result);

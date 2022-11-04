@@ -22,10 +22,8 @@ $data=date("Y-m-d");
 
 // PRINT($data);
 
-$conn = new mysqli ("127.0.0.1", "oskar", "zaq1@WSX", "domex");
-if ($conn->connect_error) {
-    die("Connection Failed: " . $conn->connect_error);
-}
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
 $log = "SELECT Login FROM Pracownicy WHERE Login = '".$_POST['login']."'";
 $login = mysqli_query($conn, $log);
 if (mysqli_num_rows($login) != 0) {

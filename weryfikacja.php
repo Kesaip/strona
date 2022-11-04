@@ -1,11 +1,8 @@
 <?php 
 session_start();
 
-$conn = new mysqli ("127.0.0.1", "oskar", "zaq1@WSX", "domex");
-
-if ($conn->connect_error) {
-    die("Connection Failed: " . $conn->connect_error);
-}
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
 if ($_GET["zledane"] != null) {
     print("<span style='color: red'>Niepoprawne dane</span><br />");
    }

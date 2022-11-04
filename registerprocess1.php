@@ -1,14 +1,12 @@
-<?php 
+<?php
 session_start();
 $strona = $_SERVER['HTTP_HOST'];
 $adres = str_replace("registerprocess1.php", "weryfikacja.php", $_SERVER['PHP_SELF']);
 ini_set( 'display_errors', 'On' ); 
 error_reporting( E_ALL );
 
-$conn = new mysqli ("127.0.0.1", "oskar", "zaq1@WSX", "domex");
-if ($conn->connect_error) {
-    die("Connection Failed: " . $conn->connect_error);
-}
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
 $data=date("Y-m-d");
 $log = "SELECT Email FROM Uzytkownicy WHERE Email = '".$_POST['email']."'";
 $login = mysqli_query($conn, $log);

@@ -20,10 +20,8 @@ $data=date("Y-m-d");
 
 // PRINT($data);
 
-$conn = new mysqli ("127.0.0.1", "oskar", "zaq1@WSX", "domex");
-if ($conn->connect_error) {
-    die("Connection Failed: " . $conn->connect_error);
-}
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
 $mail = "SELECT Email FROM loginy WHERE potwierdzone = 'T' AND Email = '".$_POST['email']."'";
 $email = mysqli_query($conn, $mail);
 if (mysqli_num_rows($email) == 0) {
@@ -54,25 +52,7 @@ $password = $_POST['haslo'];
       if ($_POST["haslo"] == $_POST["haslo2"]) {
           $Zapytanie =  "INSERT INTO Uzytkownicy (Imie,Nazwisko,Email,Haslo,DataDolaczenia) VALUES ('".$Imie."','".$_POST["nazwisko"]."','".$Login."','".$password."','".$data."')";
           
-//           $to      = $Login; 
-// $subject = 'Rejestracja | Weryfikacja';
-// $message = '
-  
-// Dziękujemy za zarejestrowaniu konta na naszej stronie!
-// Twoje konto zostało stworzone, za pomocą poniższych danych możesz zweryfikować konto.
 
-// ------------------------
-// Email: '.$Login.'
-// Password: '.$password.'
-// ------------------------
-  
-// Kliknij w link aby przejść na naszą stronę:
-// http://192.168.1.113/php.php/weryfikacja
-  
-// ';
-                      
-// $headers = 'From:noreply@oskarp.pl' . "\r\n"; 
-// mail($to, $subject, $message, $headers);
           $Zapytanie2 =  "SELECT Nazwisko,Imie,OsobaId
           FROM Uzytkownicy WHERE Email='".$_POST["login"]."' AND Haslo='".$_POST["haslo"]."'";
           $result = mysqli_query($conn, $Zapytanie2);

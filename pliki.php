@@ -1,14 +1,11 @@
 <?php 
 
   session_start();
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] != 5 {
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] != 5) {
       header("location: php.php?nie=1");
   }
-  $conn = new mysqli ("127.0.0.1", "oskar", "zaq1@WSX", "domex");
-
-  if ($conn->connect_error) {
-    die("Connection Failed: " . $conn->connect_error);
-  }
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
 
   $Zapytanie =  "SELECT Nazwisko,Imie,PracownikId
   FROM Pracownicy";

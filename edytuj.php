@@ -3,10 +3,8 @@
   if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
     header("location: php.php");
   }
-  $conn = new mysqli ("127.0.0.1", "oskar", "zaq1@WSX", "domex");
-  if ($conn->connect_error) {
-    die("Connection Failed: " . $conn->connect_error);
-  }
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
   $Zapytanie =  "SELECT Nazwisko,Imie,Login,PracownikId,Haslo
   FROM Pracownicy WHERE PracownikId=".$_GET['id'];
   $result = mysqli_query($conn, $Zapytanie);
