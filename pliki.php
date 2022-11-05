@@ -13,25 +13,25 @@ $conn = polaczenieBaza();
   $result = mysqli_query($conn, $Zapytanie);
   $row = mysqli_fetch_assoc($result);
   require_once('naglowek.php');
-  if ($_GET["duzy"] != null) {
+  if (isset($_GET["duzy"] ) {
     print('<div class="alert alert-warning  alert-dismissible fade show">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>O nie!</strong> Twój plik jest za duży dozwolony rozmiar to 500KB.
       </div>');
   }
-  if ($_GET["nieto"] != null) {
+  if (isset($_GET["nieto"])) {
     print('<div class="alert alert-warning  alert-dismissible fade show">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>O nie!</strong> Dozwolone pliki to jpg, jpeg, png, gif.
       </div>');
   }
-  if ($_GET["obraz"] != null) {
+  if (isset($_GET["obraz"])) {
     print('<div class="alert alert-danger  alert-dismissible fade show">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Oj Oj!</strong> Nie wolno tak robić.
       </div>');
   }
-  if ($_GET["udane"] != 0) {
+  if (isset($_GET["udane"])) {
     print('<div class="alert alert-success  alert-dismissible fade show">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Sukces!</strong> Pomyślnie dodałeś plik.

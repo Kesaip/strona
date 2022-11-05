@@ -5,31 +5,31 @@
         <br>
         <center>
         <?php
-          if ($_GET["dodano"] != null) {
+          if (isset($_GET["dodano"])) {
             print('<div class="alert alert-success  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Sukces!</strong> Pomyślnie dodałeś użytkownika.
               </div>');
           }
-          if ($_GET["usunieto"] != null) {
+          if (isset($_GET["usunieto"])) {
             print('<div class="alert alert-success  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Sukces!</strong> Pomyślnie usunięto użytkownika.
               </div>');
           }
-          if ($_GET["zedytowano"] != null) {
+          if (isset($_GET["zedytowano"])) {
             print('<div class="alert alert-success  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Sukces!</strong> Pomyślnie zeedytowano użytkownika.
               </div>');
           }
-          if ($_GET["!zmiany"] != null) {
+          if (isset($_GET["!zmiany"])) {
             print('<div class="alert alert-info  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Sukces!</strong> Nie dokonano żadnych zmian.
               </div>');
           }
-          if ($_GET["niewolno"] != null) {
+          if (isset($_GET["niewolno"])) {
             print('<div class="alert alert-danger  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Oj Oj</strong> Nie wolno usuwać samego siebie.
@@ -37,31 +37,31 @@
             $idiota = "Idioto";
             echo "<script type='text/javascript'>alert('$idiota');</script>";
           }
-          if ($_GET["zajety"] != null) {
+          if (isset($_GET["zajety"])) {
             print('<div class="alert alert-warning  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>O nie!</strong> Ten login jest już zajęty.
               </div>');
           }
-          if ($_GET["haslo"] != null) {
+          if (isset($_GET["haslo"])) {
             print('<div class="alert alert-warning  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Oj!</strong> Nie umieszczaj spacji w haśle.
               </div>');
           }
-          if ($_GET["zleimie"] != null) {
+          if (isset($_GET["zleimie"])) {
             print('<div class="alert alert-warning  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>O nie!</strong> Nie używaj znaków specjalnych oraz liczb w imieniu.
               </div>');
           }
-          if ($_GET["zlenazwisko"] != null) {
+          if (isset($_GET["zlenazwisko"])) {
             print('<div class="alert alert-warning  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>O nie!</strong> Nie używaj znaków specjalnych oraz liczb w nazwisku.
               </div>');
           }
-          if ($_GET["zlylogin"] != null) {
+          if (isset($_GET["zlylogin"])) {
             print('<div class="alert alert-warning  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>O nie!</strong> Login wpisz z małych liter oraz liczb.

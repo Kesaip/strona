@@ -32,37 +32,37 @@
         <br>
         <br>
         <?php
-          if ($_GET["zlehaslo"] != null) {
+          if (isset($_GET["zlehaslo"])) {
             print('<div class="alert alert-warning  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Oj!</strong> hasła nie zgadzają się.
               </div>');
           }
-          if ($_GET["zajety"] != null) {
+          if (isset($_GET["zajety"])) {
             print('<div class="alert alert-warning  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>O nie!</strong> Ten login jest już zajęty.
               </div>');
           }
-          if ($_GET["haslo"] != null) {
+          if (isset($_GET["haslo"])) {
             print('<div class="alert alert-warning  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Oj!</strong> Nie umieszczaj spacji w haśle.
               </div>');
           }
-          if ($_GET["zleimie"] != null) {
+          if (isset($_GET["zleimie"])) {
             print('<div class="alert alert-warning  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>O nie!</strong> Nie używaj znaków specjalnych oraz liczb w imieniu.
               </div>');
           }
-          if ($_GET["zlenazwisko"] != null) {
+          if (isset($_GET["zlenazwisko"])) {
             print('<div class="alert alert-warning  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>O nie!</strong> Nie używaj znaków specjalnych oraz liczb w nazwisku.
               </div>');
           }
-          if ($_GET["zlylogin"] != null) {
+          if (isset($_GET["zlylogin"])) {
             print('<div class="alert alert-warning  alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>O nie!</strong> Login wpisz z małych liter oraz liczb.

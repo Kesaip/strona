@@ -47,7 +47,7 @@ $conn = polaczenieBaza();
         <br>
         <br>
         <?php
-          if ($_GET["zlehaslo"] != null) {
+          if (isset($_GET["zlehaslo"])) {
             print("<span style='color: red'>Hasła nie zgadzają się</span><br />");
           }
         ?>

@@ -1,20 +1,24 @@
 <?php 
-session_start();
+/*session_start();
 if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] != 3) {
     header("location: php.php?nie=1");
-}
+}*/
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
-if ($_GET["zledane"] != null) {
+if (isset($_GET["zledane"])) {
     print("<span style='color: red'>Niepoprawne dane</span><br />");
    }
-   $Zapytanie =  "SELECT Email,Haslo
+   /*$Zapytanie =  "SELECT Email,Haslo
    FROM loginy WHERE hash=".$_GET['hash'];
    $result = mysqli_query($conn, $Zapytanie);
    $row = mysqli_fetch_assoc($result);
    
-   $mail = $row['Email'];
- 
+   $mail = $row['Email'];*/
+
+$email = "SELECT Email FROM loginy WHERE hash ='" .$_GET['hash']."'";
+$result = mysqli_query($conn, $email);
+$row = mysqli_fetch_assoc($result);
+$Email = $row['Email'];
 // echo "Connected successfully";
 
 
@@ -122,7 +126,10 @@ span.psw {
     <input type="text" placeholder="Wprowadź nazwisko" name="nazwisko" required>
 
     <label for="uname"><b>Email</b></label>
-    <input type="text" placeholder="Wprowadź email" name="email" value='<?php print($mail) ?>' readonly required>
+    <input type="text" placeholder="Wprowadź email" name="email" value='<?php print($Email) ?>' readonly required>
+
+    <label for="psw"><b>kod</b></label>
+    <input type="password" placeholder="Wprowadź kod weryfikacyjny" name="kod" required>
 
     <label for="psw"><b>Hasło</b></label>
     <input type="password" placeholder="Wprowadź hasło" onkeyup='check();' id='haslo' name="haslo" required>

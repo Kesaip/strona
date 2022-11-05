@@ -1,7 +1,7 @@
 <?php
 session_start();
 $strona = $_SERVER['HTTP_HOST'];
-$adres = str_replace("registerprocess1.php", "weryfikacja.php", $_SERVER['PHP_SELF']);
+$adres = str_replace("registerprocess1.php", "rejestracja.php", $_SERVER['PHP_SELF']);
 ini_set( 'display_errors', 'On' ); 
 error_reporting( E_ALL );
 
