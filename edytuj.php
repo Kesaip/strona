@@ -1,8 +1,4 @@
-<?php 
-  session_start();
-  if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
-    header("location: php.php");
-  }
+<?php
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
   $Zapytanie =  "SELECT Nazwisko,Imie,Login,PracownikId,Haslo

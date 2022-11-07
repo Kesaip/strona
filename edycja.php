@@ -7,16 +7,6 @@ header("location: php.php");
 
 ini_set( 'display_errors', 'On' ); 
 error_reporting( E_ALL );
-// print("Imie: " . $_POST["Imie"]."<br>");
-
-// print("Nazwisko: " . $_POST["Nazwisko"]."<br>");
-
-// print("Login: " . $_POST["Login"]."<br>");
-
-// print("haslo: " . $_POST["haslo"]."<br>");
-
-// print("haslo2: " . $_POST["haslo2"]."<br>");
-
 $data=date("Y-m-d");
 $Zmiana=0;
 // PRINT($data);

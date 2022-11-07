@@ -9,7 +9,7 @@ error_reporting( E_ALL );
   }
   require_once('naglowek.php');
   require_once('funkcje/link.php');
-  link($_GET);
+  link1($_GET);
 ?>
 <center>
 <form action="uploadadm.php" method="post" enctype="multipart/form-data">
