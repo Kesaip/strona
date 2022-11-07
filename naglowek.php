@@ -108,7 +108,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 						</div>
 						<input type="submit" class="btn btn-primary btn-block" value="Zaloguj">
 						<div class="text-center mt-2">
-							<a href="#">Forgot Your password?</a>
+							<a href="#">Zapomniałeś hasła?</a>
 						</div>
 					</form>
                 </div>
@@ -117,7 +117,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 				<a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle sign-up-btn">Zarejestruj</a>
                 <div class="dropdown-menu action-form">
 					<form action="registerprocess1.php" method="post">
-						<p class="hint-text">Fill in this form to create your account!</p>
+						<p class="hint-text">Wypełnij formularz aby założyć konto!</p>
 						<div class="form-group">
 							<input type="text" class="form-control" name="email" placeholder="Email" required="required">
 						</div>

@@ -27,7 +27,7 @@ $conn = polaczenieBaza();
 $log = "SELECT Login FROM Pracownicy WHERE Login = '".$_POST['login']."'";
 $login = mysqli_query($conn, $log);
 if (mysqli_num_rows($login) != 0) {
-  header("location: dodaj.php?zajety=1");
+  header("location: dodaj.php?zajety=2");
 } else {
   $Imie = str_replace(" ",'',$_POST['Imie']);
   $Login = str_replace(" ",'',$_POST['login']);
@@ -52,7 +52,7 @@ if (mysqli_num_rows($login) != 0) {
 
       if ($conn->query($Zapytanie) === TRUE) {
           echo "New record created successfully";
-          header("location: pracownicy.php?dodano=1");
+          header("location: pracownicy.php?dodano=2");
         } else {
           echo "Error: " . $conn->error;
         }

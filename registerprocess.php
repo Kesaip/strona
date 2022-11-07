@@ -34,7 +34,7 @@ if ($conn->query($Update) === TRUE) {
 $mail = "SELECT Email FROM loginy WHERE potwierdzone = 'T' AND Email = '".$_POST['email']."'";
 $email = mysqli_query($conn, $mail);
 if (mysqli_num_rows($email) == 0) {
-  header("location: php.php?nie=1");
+  header("location: php.php?nie");
 } else {
 $log = "SELECT Email FROM Uzytkownicy WHERE Email = '".$_POST['email']."'";
 $login = mysqli_query($conn, $log);

@@ -13,30 +13,8 @@ $conn = polaczenieBaza();
   $result = mysqli_query($conn, $Zapytanie);
   $row = mysqli_fetch_assoc($result);
   require_once('naglowek.php');
-  if (isset($_GET["duzy"] ) {
-    print('<div class="alert alert-warning  alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>O nie!</strong> Twój plik jest za duży dozwolony rozmiar to 500KB.
-      </div>');
-  }
-  if (isset($_GET["nieto"])) {
-    print('<div class="alert alert-warning  alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>O nie!</strong> Dozwolone pliki to jpg, jpeg, png, gif.
-      </div>');
-  }
-  if (isset($_GET["obraz"])) {
-    print('<div class="alert alert-danger  alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Oj Oj!</strong> Nie wolno tak robić.
-      </div>');
-  }
-  if (isset($_GET["udane"])) {
-    print('<div class="alert alert-success  alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Sukces!</strong> Pomyślnie dodałeś plik.
-      </div>');
-  }
+  require_once('funkcje/link.php');
+  link1($_GET);
 ?>
 <center>
 <form action="upload.php" method="post" enctype="multipart/form-data">

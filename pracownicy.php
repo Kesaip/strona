@@ -1,72 +1,12 @@
       <?php
         require_once('naglowekpracownicy.php');
+        require_once('funkcje/link.php');
       ?>
       <div id="tresc_pracownicy">
         <br>
         <center>
         <?php
-          if (isset($_GET["dodano"])) {
-            print('<div class="alert alert-success  alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Sukces!</strong> Pomyślnie dodałeś użytkownika.
-              </div>');
-          }
-          if (isset($_GET["usunieto"])) {
-            print('<div class="alert alert-success  alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Sukces!</strong> Pomyślnie usunięto użytkownika.
-              </div>');
-          }
-          if (isset($_GET["zedytowano"])) {
-            print('<div class="alert alert-success  alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Sukces!</strong> Pomyślnie zeedytowano użytkownika.
-              </div>');
-          }
-          if (isset($_GET["!zmiany"])) {
-            print('<div class="alert alert-info  alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Sukces!</strong> Nie dokonano żadnych zmian.
-              </div>');
-          }
-          if (isset($_GET["niewolno"])) {
-            print('<div class="alert alert-danger  alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Oj Oj</strong> Nie wolno usuwać samego siebie.
-              </div>');
-            $idiota = "Idioto";
-            echo "<script type='text/javascript'>alert('$idiota');</script>";
-          }
-          if (isset($_GET["zajety"])) {
-            print('<div class="alert alert-warning  alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>O nie!</strong> Ten login jest już zajęty.
-              </div>');
-          }
-          if (isset($_GET["haslo"])) {
-            print('<div class="alert alert-warning  alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Oj!</strong> Nie umieszczaj spacji w haśle.
-              </div>');
-          }
-          if (isset($_GET["zleimie"])) {
-            print('<div class="alert alert-warning  alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>O nie!</strong> Nie używaj znaków specjalnych oraz liczb w imieniu.
-              </div>');
-          }
-          if (isset($_GET["zlenazwisko"])) {
-            print('<div class="alert alert-warning  alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>O nie!</strong> Nie używaj znaków specjalnych oraz liczb w nazwisku.
-              </div>');
-          }
-          if (isset($_GET["zlylogin"])) {
-            print('<div class="alert alert-warning  alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>O nie!</strong> Login wpisz z małych liter oraz liczb.
-              </div>');
-          }
+            link1($_GET);
         ?>
         <a href="dodaj.php"><i class="fa fa-user-plus fa-3x" style='padding: 5px;color: rgb(0,200,0)'></i></a>
         <table class="table">

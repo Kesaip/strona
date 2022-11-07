@@ -64,7 +64,7 @@ if ($_POST["haslo"] == $_POST["haslo2"]) {
         $log = "SELECT Login FROM Pracownicy WHERE Login = '".$_POST['Login']."'";
         $login = mysqli_query($conn, $log);
         if (mysqli_num_rows($login) != 0) {
-            header("location: pracownicy.php?zajety=1");
+            header("location: pracownicy.php?zajety=2");
         } else {
             $Zapytanie =  "UPDATE Pracownicy SET Imie='".$Imie."',Nazwisko='".$_POST['Nazwisko']."',Login='".$Login."',Haslo='".$_POST['haslo']."' WHERE PracownikId='".$_POST['id']."'";
             if ($conn->query($Zapytanie) === TRUE) {

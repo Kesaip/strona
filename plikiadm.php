@@ -8,43 +8,8 @@ error_reporting( E_ALL );
       header("location: php.php?nie=1");
   }
   require_once('naglowek.php');
-
-  if (isset($_GET["duzy"]) && $_GET["duzy"] != null) {
-    print('<div class="alert alert-warning  alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>O nie!</strong> Twój plik jest za duży dozwolony rozmiar to 500KB.
-      </div>');
-  }
-  if (isset($_GET["nieto"]) && $_GET["nieto"] != null) {
-    print('<div class="alert alert-warning  alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>O nie!</strong> Dozwolone pliki to jpg, jpeg, png, gif.
-      </div>');
-  }
-  if (isset($_GET["obraz"]) && $_GET["obraz"] != null) {
-    print('<div class="alert alert-danger  alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Oj Oj!</strong> Nie wolno tak robić.
-      </div>');
-  }
-  if (isset($_GET["udane"]) && $_GET["udane"] != 0) {
-    print('<div class="alert alert-success  alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Sukces!</strong> Pomyślnie dodałeś plik.
-      </div>');
-  }
-  if (isset($_GET["istnieje"]) && $_GET["istnieje"] != null) {
-    print('<div class="alert alert-warning  alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>O nie!</strong> Plik o danej nazwie już istnieje.
-      </div>');
-  }
-  if (isset($_GET["usunieto"]) && $_GET["usunieto"] != 0) {
-    print('<div class="alert alert-success  alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Sukces!</strong> Pomyślnie usunąłeś plik.
-      </div>');
-  }
+  require_once('funkcje/link.php');
+  link($_GET);
 ?>
 <center>
 <form action="uploadadm.php" method="post" enctype="multipart/form-data">
