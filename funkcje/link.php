@@ -144,5 +144,23 @@ elseif (isset($_GET["Nieudany"])) {
         $idiota = "Idioto";
         echo "<script type='text/javascript'>alert('$idiota');</script>";
     }
+    elseif (isset($_GET["niema"]) && $_GET["niema"] != null) {
+        print('<div class="alert alert-warning  alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>O nie!</strong> Ten mail nie jest zarejestrowany.
+      </div>');
+    }
+    elseif (isset($_GET["dodano"]) && $_GET['dodano']==3) {
+        print('<div class="alert alert-success  alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Sukces!</strong> Przejdź na swoją pocztę w celu weryfikacji.
+              </div>');
+    }
+    elseif (isset($_GET["dodano"]) && $_GET['dodano']==4) {
+        print('<div class="alert alert-success  alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Sukces!</strong> Pomyślnie zmieniono hasło.
+              </div>');
+    }
 }
 

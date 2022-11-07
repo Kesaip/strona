@@ -79,25 +79,4 @@ $mail->Body = $wiadomosc;
         $conn->close();
       }
     }
-//   }
-//   }
-//   }
-//   }
-// } 
-  
-
-
-
-
-// if ($row == null) {
-//     $_SESSION['zalogowany'] = 0;
-//     header("HTTP/1.1 301 Moved Permanently");
-// header("Location: php.php?Nieudany=1");
-// exit;
-// } 
-// else {
-//     setcookie("Ciastko","10");
-//     setcookie('oddano_glos', '1');
-// setcookie('oddano_glos', '1', time()+3600);
-
 ?>

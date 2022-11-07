@@ -1,25 +1,7 @@
-<?php 
-/*session_start();
-if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] != 3) {
-  header("location: php.php?nie=1");
-}*/
+<?php
 ini_set( 'display_errors', 'On' ); 
 error_reporting( E_ALL );
-// print("Imie: " . $_POST["Imie"]."<br>");
-
-// print("Nazwisko: " . $_POST["Nazwisko"]."<br>");
-
-// print("Login: " . $_POST["Login"]."<br>");
-
-// print("haslo: " . $_POST["haslo"]."<br>");
-
-// print("haslo2: " . $_POST["haslo2"]."<br>");
-
 $data=date("Y-m-d");
-
-
-// PRINT($data);
-
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 $Zapytanie3 =  "SELECT Email,Haslo,LoginId,hash
@@ -44,8 +26,6 @@ if (mysqli_num_rows($login) != 0) {
   $Imie = str_replace(" ",'',$_POST['imie']);
   $Login = str_replace(" ",'',$_POST['email']);
 $password = $_POST['haslo'];
-  // $a = strpos($_POST['haslo'], " ");
-  // print($a);
   if (strpos($_POST['haslo'], " ")) {
     header("location: php.php?haslo=1");
   } else { 
@@ -79,7 +59,6 @@ $password = $_POST['haslo'];
         $conn->close();
       } else {
         header('location: php.php?haslo=1');
-          // header("location:'" .$_SERVER["HTTP_REFERER"]."'");
     }
   }
   }
@@ -87,19 +66,4 @@ $password = $_POST['haslo'];
   }
 } 
 }
-
-
-
-
-// if ($row == null) {
-//     $_SESSION['zalogowany'] = 0;
-//     header("HTTP/1.1 301 Moved Permanently");
-// header("Location: php.php?Nieudany=1");
-// exit;
-// } 
-// else {
-//     setcookie("Ciastko","10");
-//     setcookie('oddano_glos', '1');
-// setcookie('oddano_glos', '1', time()+3600);
-
 ?>

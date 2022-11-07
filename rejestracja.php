@@ -1,33 +1,13 @@
-<?php 
-/*session_start();
-if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] != 3) {
-    header("location: php.php?nie=1");
-}*/
+<?php
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 if (isset($_GET["zledane"])) {
     print("<span style='color: red'>Niepoprawne dane</span><br />");
    }
-   /*$Zapytanie =  "SELECT Email,Haslo
-   FROM loginy WHERE hash=".$_GET['hash'];
-   $result = mysqli_query($conn, $Zapytanie);
-   $row = mysqli_fetch_assoc($result);
-   
-   $mail = $row['Email'];*/
-
 $email = "SELECT Email FROM loginy WHERE hash ='" .$_GET['hash']."'";
 $result = mysqli_query($conn, $email);
 $row = mysqli_fetch_assoc($result);
 $Email = $row['Email'];
-// echo "Connected successfully";
-
-
-// $Zapytanie =  "SELECT Nazwisko,Imie,PracownikId
-// FROM Pracownicy";
-
-// // $result2 = mysqli_query($conn, $Zapytanie2);
-// $result = mysqli_query($conn, $Zapytanie);
-// $row = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html>

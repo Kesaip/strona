@@ -108,11 +108,33 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 						</div>
 						<input type="submit" class="btn btn-primary btn-block" value="Zaloguj">
 						<div class="text-center mt-2">
-							<a href="#">Zapomniałeś hasła?</a>
+							<a data-toggle="modal" data-target="#exampleModal" href="#">Zapomniałeś hasła?</a>
 						</div>
 					</form>
                 </div>
 			</div>
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Odzyskiwanie hasła</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                             </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="passwordchange.php" method="post">
+                                <label><h6>Podaj email</h6></label>
+                                <input type="text" class="form-control" name="email" placeholder="example@mail.com" required="required">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                            <input type="submit" class="btn btn-primary" value="Wyślij">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 			<div class="nav-item dropdown" style="padding: 5px;">
 				<a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle sign-up-btn">Zarejestruj</a>
                 <div class="dropdown-menu action-form">
