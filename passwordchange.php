@@ -7,6 +7,7 @@ error_reporting( E_ALL );
 
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
+$data=date("Y-m-d");
 $log = "SELECT Email FROM Uzytkownicy WHERE Email = '".$_POST['email']."'";
 $login = mysqli_query($conn, $log);
 $Login = str_replace(" ",'',$_POST['email']);
@@ -19,7 +20,7 @@ if (mysqli_num_rows($login) == 0) {
     } else {
 
         $password = rand(1000,99999999);
-        $Zapytanie =  "INSERT INTO loginytmp (Email,Haslo,hash) VALUES ('".$Login."','".$password."','".$hash."')";
+        $Zapytanie =  "INSERT INTO loginytmp (Email,Haslo,hash,dataProsby) VALUES ('".$Login."','".$password."','".$hash."','".$data."')";
 
         require_once('phpmailer/PHPMailerAutoload.php'); # patch where is PHPMailer / ścieżka do PHPMailera
 
