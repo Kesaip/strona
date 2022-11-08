@@ -162,5 +162,11 @@ elseif (isset($_GET["Nieudany"])) {
                 <strong>Sukces!</strong> Pomyślnie zmieniono hasło.
               </div>');
     }
+    elseif (isset($_GET["zlykod"]) && $_GET['zlykod']==1) {
+        print('<div class="alert alert-warning  alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>O nie!</strong> Źle wpisałeś kod z maila.
+              </div>');
+    }
 }
 

@@ -1,17 +1,24 @@
 <?php
-ini_set( 'display_errors', 'On' ); 
+ini_set( 'display_errors', 'On' );
 error_reporting( E_ALL );
 $data=date("Y-m-d");
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 $Zapytanie3 =  "SELECT Email,Haslo,LoginId,hash
 FROM loginy WHERE Email='".$_POST["email"]."' AND Haslo='".$_POST["kod"]."'";
+$odp = mysqli_query($conn,$Zapytanie3);
+if ($foundRows = mysqli_num_rows($odp)!=0) {
 
-$Update = "UPDATE loginy SET potwierdzone='T' WHERE Email='".$_POST["email"]."' AND Haslo='".$_POST["kod"]."'";
-if ($conn->query($Update) === TRUE) {
-    echo "New record created successfully";
+    $Update = "UPDATE loginy SET potwierdzone='T' WHERE Email='" . $_POST["email"] . "' AND Haslo='" . $_POST["kod"] . "'";
+
+    if ($conn->query($Update) === true) {
+        echo "New record created successfully";
+    } else {
+        header("location: php.php?zlykod=1");
+    }
 } else {
     header("location: php.php?zlykod=1");
+    die;
 }
 $mail = "SELECT Email FROM loginy WHERE potwierdzone = 'T' AND Email = '".$_POST['email']."'";
 $email = mysqli_query($conn, $mail);
