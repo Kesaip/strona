@@ -31,6 +31,6 @@ $conn = polaczenieBaza();
         $_SESSION['Id'] = $row['OsobaId'];
         $_SESSION['zalogowany'] = 2;
         $_SESSION['time']     = time()+600;
-        header("Location: ".$_SERVER['HTTP_REFERER']);
+        header("Location: ".$_SERVER['HTTP_REFERER'].'?udanie');
     }
 ?>

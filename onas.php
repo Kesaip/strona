@@ -3,6 +3,8 @@
 ?>
       <?php
         require_once('naglowek.php');
+        require_once('funkcje/link.php');
+        link1($_GET);
       ?>
       <div id="tresc3">
         <br>

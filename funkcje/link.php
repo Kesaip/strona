@@ -168,5 +168,23 @@ elseif (isset($_GET["Nieudany"])) {
                 <strong>O nie!</strong> Źle wpisałeś kod z maila.
               </div>');
     }
+    elseif (isset($_GET["duzo"]) && $_GET['duzo']==1) {
+        print('<div class="alert alert-warning  alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>O nie!</strong> Przekroczyłeś limit prośb o zmianę hasła, spróbuj ponownie jutro.
+              </div>');
+    }
+    elseif (isset($_GET["duzo"]) && $_GET['duzo']==2) {
+        print('<div class="alert alert-warning  alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>O nie!</strong> Przekroczyłeś limit prośb rejestracje, spróbuj ponownie jutro.
+              </div>');
+    }
+    elseif (isset($_GET["udanie"])) {
+        print('<div class="alert alert-success  alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Sukces!</strong> Pomyślnie się zalogowałeś.
+      </div>');
+    }
 }
 

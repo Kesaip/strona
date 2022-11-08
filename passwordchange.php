@@ -8,6 +8,12 @@ error_reporting( E_ALL );
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 $data=date("Y-m-d");
+$duzo = "SELECT Email FROM loginytmp WHERE Email = '".$_POST['email']."'";
+$konta = mysqli_query($conn, $duzo);
+if (mysqli_num_rows($konta) > 3){
+    header("location: php.php?duzo=1");
+    die;
+}
 $log = "SELECT Email FROM Uzytkownicy WHERE Email = '".$_POST['email']."'";
 $login = mysqli_query($conn, $log);
 $Login = str_replace(" ",'',$_POST['email']);
