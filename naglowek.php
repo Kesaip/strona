@@ -57,11 +57,17 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 
 <?php
   if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
-      print('<a class="nav-item nav-link" href="pracownicy.php">Pracownicy</a>');
+      print('<div class="dropdown show">');
+      print('<a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrator</a>');
+      print('<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">');
+      print('<a class="nav-item nav-link dropdown-item" href="pracownicy.php">Pracownicy</a>');
+      print('<a class="nav-item nav-link dropdown-item" href="uczniowie.php">Uczniowie</a>');
+      print('</div>');
+      print('</div>');
   }
 ?>
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2) {
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 30 && $_SESSION['zalogowany'] < 40 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400) {
     print('<a class="nav-item nav-link" href="pliki2.php">Pliki</a>');
   }
 ?>
@@ -82,7 +88,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 		</div>
         <?php
      
-     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2) {
+     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 30 && $_SESSION['zalogowany'] < 40 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400) {
          print('
          <div class="navbar-nav ml-auto action-buttons">
 			<div class="nav-item dropdown" style="padding: 5px;">

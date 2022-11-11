@@ -7,11 +7,11 @@
     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] != 1) {
       header("location: php.php?nie=1");
     } else {
-        if (file_exists("/var/www/domex/uploads".$_GET['name'])) {
-            unlink("/var/www/domex/uploads/".$_GET['nazwa']);
+        if (file_exists("/Users/oskar/Desktop/stronyglowne/uploads/"/*"/var/www/domex/uploads"*/.$_GET['name'])) {
+            unlink("/Users/oskar/Desktop/stronyglowne/uploads/"/*"/var/www/domex/uploads/"*/.$_GET['nazwa']);
             header("location: plikiadm.php?usunieto=1");
         } else {
-            header("location: plikiadm.php?niema=1");
+            header("location: plikiadm.php?niema=2");
         }
     }
 ?>

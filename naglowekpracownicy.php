@@ -60,8 +60,14 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
     </a>
 
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
-      print('<a class="nav-item nav-link" href="pracownicy.php">Pracownicy</a>');
+if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
+    print('<div class="dropdown show">');
+    print('<a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrator</a>');
+    print('<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">');
+    print('<a class="nav-item nav-link dropdown-item" href="pracownicy.php">Pracownicy</a>');
+    print('<a class="nav-item nav-link dropdown-item" href="uczniowie.php">Uczniowie</a>');
+    print('</div>');
+    print('</div>');
   }
 ?>
 <?php
