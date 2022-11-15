@@ -9,13 +9,14 @@
             link1($_GET);
         ?>
         <a href="dodaj.php"><i class="fa fa-user-plus fa-3x" style='padding: 5px;color: rgb(0,200,0)'></i></a>
-        <table class="table">
+        <table class="table" style="text-align: center">
         <thead class="thead-dark">
           <tr>
           <th scope="col">#</th>
             <th scope="col">Imię</th>
             <th scope="col">Nazwisko</th>
-            <th scope="col">Akcja</th>
+            <th scope="col">Edycja</th>
+            <th scope="col">Usuwanie</th>
           </tr>
         <?php
           $helena = 0;
@@ -27,7 +28,7 @@
           if ($result->num_rows > 0) {           
             while($row = $result->fetch_assoc()) {
               $helena++;
-              echo "<tr><td>".$helena."</td><td>" . $row["Imie"]. "</td><td>" . $row["Nazwisko"] . "</td><td> <a href='edytuj.php?id=".$row["PracownikId"]."'><i class='fa fa-pencil-square-o fa-2x' style='padding-right: 5px' aria-hidden='true'></i></a><a href='usun.php?id=".$row["PracownikId"]."'><i class='fa fa-trash fa-2x' style='padding-left: 5px;color: rgb(255,30,30)' aria-hidden='true'></i></a></td></tr>";
+              echo "<tr><td>".$helena."</td><td>" . $row["Imie"]. "</td><td>" . $row["Nazwisko"] . "</td><td><a href='edytuj.php?id=".$row["PracownikId"]."'><i class='fa fa-pencil-square-o fa-2x' style='padding-right: 5px' aria-hidden='true'></i></a></td><td><a href='usun.php?id=".$row["PracownikId"]."'><i class='fa fa-trash fa-2x' style='padding-left: 5px;color: rgb(255,30,30)' aria-hidden='true'></i></a></td></tr>";
             }
           } else {
             echo "0 results";

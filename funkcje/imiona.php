@@ -44,5 +44,7 @@ function imie($imie){
     }
     elseif ($ostatnia == 'd'){
         return $imie.'zie';
+    }else{
+        return $imie;
     }
 }

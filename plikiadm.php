@@ -4,8 +4,8 @@
   ini_set( 'display_errors', 'On' ); 
 error_reporting( E_ALL );
 
-  if (!isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] != 1) {
-      header("location: php.php?nie=1");
+  if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
+      header("location: /?nie=1");
   }
   require_once('naglowek.php');
   require_once('funkcje/link.php');

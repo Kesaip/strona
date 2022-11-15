@@ -14,36 +14,36 @@ if ($foundRows = mysqli_num_rows($odp)!=0) {
     if ($conn->query($Update) === true) {
         echo "New record created successfully";
     } else {
-        header("location: php.php?zlykod=1");
+        header("location: /?zlykod=1");
     }
 } else {
-    header("location: php.php?zlykod=1");
+    header("location: /?zlykod=1");
     die;
 }
 $mail = "SELECT Email FROM loginy WHERE potwierdzone = 'T' AND Email = '".$_POST['email']."'";
 $email = mysqli_query($conn, $mail);
 if (mysqli_num_rows($email) == 0) {
-  header("location: php.php?nie");
+  header("location: /?nie");
 } else {
 $log = "SELECT Email FROM Uzytkownicy WHERE Email = '".$_POST['email']."'";
 $login = mysqli_query($conn, $log);
 if (mysqli_num_rows($login) != 0) {
-  header("location: php.php?zajety=1");
+  header("location: /?zajety=1");
 } else {
   $Imie = str_replace(" ",'',$_POST['imie']);
   $Login = str_replace(" ",'',$_POST['email']);
 $password = $_POST['haslo'];
   if (strpos($_POST['haslo'], " ")) {
-    header("location: php.php?haslo=1");
+    header("location: /?haslo=1");
   } else { 
       if (!preg_match("/^[a-zA-Z]+$/",$_POST['nazwisko'])) {
-        header("location: php.php?zlenazwisko=1");
+        header("location: /?zlenazwisko=1");
       } else {
       if (!preg_match("/^[a-zA-Z]+$/",$Imie)) {
-        header("location: php.php?zleimie=1");
+        header("location: /?zleimie=1");
       } else {
         if (!filter_var($Login, FILTER_VALIDATE_EMAIL)) {
-            header("location: php.php?zlyemail=1");
+            header("location: /?zlyemail=1");
         } else {      
       if ($_POST["haslo"] == $_POST["haslo2"]) {
           $Zapytanie =  "INSERT INTO Uzytkownicy (Imie,Nazwisko,Email,Haslo,DataDolaczenia) VALUES ('".$Imie."','".$_POST["nazwisko"]."','".$Login."','".$password."','".$data."')";
@@ -58,14 +58,14 @@ $password = $_POST['haslo'];
           $_SESSION['time']     = time()+600;
       if ($conn->query($Zapytanie) === TRUE) {
           echo "New record created successfully";
-          header("location: php.php?dodano=2");
+          header("location: /?dodano=2");
         } else {
           echo "Error: " . $conn->error;
         }
         
         $conn->close();
       } else {
-        header('location: php.php?haslo=1');
+        header('location: /?haslo=1');
     }
   }
   }

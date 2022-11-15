@@ -144,7 +144,7 @@ elseif (isset($_GET["Nieudany"])) {
         $idiota = "Idioto";
         echo "<script type='text/javascript'>alert('$idiota');</script>";
     }
-    elseif (isset($_GET["niema"]) && $_GET["niema"] != null) {
+    elseif (isset($_GET["niema"])) {
         print('<div class="alert alert-warning  alert-dismissible fade show">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>O nie!</strong> Ten mail nie jest zarejestrowany.

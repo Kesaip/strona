@@ -8,10 +8,10 @@ body {
 	font-size: 13px;
 }
 .navbar {
-	background: rgb(255, 255, 255);
+	background: rgb(0, 174, 255);
 	padding-left: 16px;
 	padding-right: 16px;
-	border-bottom: 1px solid #dfe3e8;
+	border-bottom: 1px solid #0073ff;
 	border-radius: 0;
 }
 .nav-link img {
@@ -24,11 +24,11 @@ body {
 }
 .navbar .navbar-brand {
 	padding-left: 0;
-	font-size: 20px;
+	font-size: 25px;
 	padding-right: 50px;
 }
 .navbar .navbar-brand b {
-	color: #33cabb;		
+	color: rgb(0, 174, 255);
 }
 .navbar .form-inline {
 	display: inline-block;
@@ -65,7 +65,7 @@ body {
 	max-height: 36px;
 }
 .navbar .dropdown-menu {
-	color: #999;
+	color: rgb(0, 174, 255);
 	font-weight: normal;
 	border-radius: 1px;
 	border-color: #e5e5e5;
@@ -88,9 +88,9 @@ body {
 	font-size: 14px;
 }
 .navbar .action-form a {		
-	color: #33cabb;
+	color: rgb(0, 174, 255);
 	padding: 0 !important;
-	font-size: 14px;
+	font-size: 15px;
 }
 .navbar .action-form .hint-text {
     text-align: center;
@@ -98,13 +98,13 @@ body {
     font-size: 13px;
 }
 .navbar .btn-primary, .navbar .btn-primary:active {
-	color: #fff;
-	background: #33cabb !important;
+	color: rgb(255, 255, 255);
+	background: rgb(0, 174, 255) !important;
 	border: none;
 }	
 .navbar .btn-primary:hover, .navbar .btn-primary:focus {		
 	color: #fff;
-	background: #31bfb1 !important;
+	background: rgb(0, 174, 255) !important;
 }
 .navbar .social-btn .btn, .navbar .social-btn .btn:hover {
 	color: #fff;
@@ -139,7 +139,7 @@ body {
 .or-seperator {
 	margin-top: 32px;
 	text-align: center;
-	border-top: 1px solid #e0e0e0;
+	border-top: 1px solid #ffffff;
 }
 .or-seperator b {
 	color: #666;
@@ -149,7 +149,7 @@ body {
 	font-size: 13px;
 	text-align: center;
 	line-height: 26px;
-	background: #fff;
+	background: rgb(255, 255, 255);
 	display: inline-block;
 	border: 1px solid #e0e0e0;
 	border-radius: 50%;
@@ -186,23 +186,23 @@ body {
 }
 #tresc {
 	text-align: center;
-	color: rgb(238, 255, 0);
-	background-image: url(obrazy/zdjecie.jpg);
-    background-size: 100px;
+	color: rgb(0, 174, 255);
+	background-image: url(obrazy/szareTlo.png);
+    background-size: 100%;
 }
 #tresc3 {
 	text-shadow: 2px 2px 5px red;
-	background-image: url(obrazy/polska.jpg);
+	background-image: url(obrazy/szareTlo.png);
 	background-size: 1700px;
 	background-color: rgb(110, 0, 235);
 	text-align: center;
-	color: rgb(238, 255, 0);
+	color: rgb(0, 174, 255);
   }
 #tresc2 {
 	text-align: center;
 	text-shadow: 2px 2px 5px red;
-	color: rgb(238, 255, 0);
-	background-image: url(obrazy/pioruny.jpg);
+	color: rgb(0, 174, 255);
+	background-image: url(obrazy/szareTlo.png);
   background-size: 2000px;
 }
 .active {
@@ -219,7 +219,7 @@ body {
 	  color: black;
   }
   .cien {
-	text-shadow: 2px 2px 5px red;
+	text-shadow: 2px 3px 4px rgb(0, 108, 158);
   }
 	/* .tabela{
 		margin-left: auto;

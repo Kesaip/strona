@@ -11,18 +11,22 @@ $data=date("Y-m-d");
 $duzo = "SELECT Email FROM loginy WHERE Email = '".$_POST['email']."'";
 $konta = mysqli_query($conn, $duzo);
 if (mysqli_num_rows($konta) > 3){
-    header("location: php.php?duzo=2");
+    header("location: /?duzo=2");
     die;
 }
 $log = "SELECT Email FROM Uzytkownicy WHERE Email = '".$_POST['email']."'";
 $login = mysqli_query($conn, $log);
+$log2 = "SELECT Email FROM uczniowie WHERE Email = '".$_POST['email']."'";
+$login2 = mysqli_query($conn, $log2);
+$log3 = "SELECT Email FROM nauczyciele WHERE Email = '".$_POST['email']."'";
+$login3 = mysqli_query($conn, $log3);
 $Login = str_replace(" ",'',$_POST['email']);
 $hash = md5( rand(0,1000) );
-if (mysqli_num_rows($login) != 0) {
-  header("location: php.php?zajety=1");
+if (mysqli_num_rows($login) != 0 or mysqli_num_rows($login2) != 0 or mysqli_num_rows($login3) != 0) {
+  header("location: /?zajety=1");
 } else {
   if (!filter_var($Login, FILTER_VALIDATE_EMAIL)) {
-    header("location: php.php?zlyemail=1");
+    header("location: /?zlyemail=1");
 } else {
   
 $password = rand(1000,99999999);
@@ -47,7 +51,7 @@ $password = rand(1000,99999999);
           
           $mail->IsHTML(true); # Email @ HTML
           
-          $mail->Subject = 'E-mail subject / Tytuł wiadomości';
+          $mail->Subject = 'Zmiana hasła';
           //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
           
           $wiadomosc =  '
@@ -77,7 +81,7 @@ $mail->Body = $wiadomosc;
 
       if ($conn->query($Zapytanie) === TRUE) {
           echo "New record created successfully";
-          header("location: php.php?dodano=1");
+          header("location: /?dodano=1");
         } else {
           echo "Error: " . $conn->error;
         }

@@ -4,10 +4,10 @@
   ini_set( 'display_errors', 'On' ); 
 error_reporting( E_ALL );
 
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] != 1 AND isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] != 2) {
-      header("location: php.php?nie=1");
+if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1 AND ($_SESSION['zalogowany'] < 300 or $_SESSION['zalogowany'] > 500) AND $_SESSION['zalogowany'] != 40) {
+      header("location: /?nie=1");
   }
-$target_dir = "/var/www/domex/uploads/";
+$target_dir = "/Users/oskar/Desktop/stronyglowne/uploads/";//"/var/www/domex/uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

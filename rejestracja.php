@@ -124,7 +124,7 @@ span.psw {
   </div>
 
   <div class="container" style="background-color:#f1f1f1">
-    <a href='php.php'><button type="button" class="cancelbtn">Anuluj</button>
+    <a href='/'><button type="button" class="cancelbtn">Anuluj</button>
   </div>
 </form>
 <div>

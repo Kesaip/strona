@@ -1,9 +1,9 @@
-<footer class="bg-dark text-center text-white">
+<footer class=" text-center text-white" style="background-color: rgb(0, 174, 255);">
   <div class="container p-4 pb-0">
     <section class="mb-4">
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.5);">
     © 2022 Copyright:
-    <a class="text-white" href="php.php">Oskar'sSite.pl</a>
+    <a class="text-white" href="/">ZSET.pl</a>
   </div>
 </footer>
 <div id="debug">

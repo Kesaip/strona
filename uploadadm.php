@@ -5,12 +5,11 @@
 error_reporting( E_ALL );
 
   if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] != 1) {
-      header("location: php.php?nie=1");
+      header("location: /?nie=1");
   }
-$target_dir = "/var/www/domex/uploads/";
+$target_dir = "/Users/oskar/Desktop/stronyglowne/uploads/";//"/var/www/domex/uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 if (file_exists($target_file)) {
   header("location: plikiadm.php?istnieje=1");
