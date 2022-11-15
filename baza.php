@@ -2,25 +2,13 @@
 session_start();
 
 if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
-header("location: php.php");
+header("location: /");
 }
 
 ini_set( 'display_errors', 'On' ); 
 error_reporting( E_ALL );
-// print("Imie: " . $_POST["Imie"]."<br>");
-
-// print("Nazwisko: " . $_POST["Nazwisko"]."<br>");
-
-// print("Login: " . $_POST["Login"]."<br>");
-
-// print("haslo: " . $_POST["haslo"]."<br>");
-
-// print("haslo2: " . $_POST["haslo2"]."<br>");
 
 $data=date("Y-m-d");
-
-
-// PRINT($data);
 
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
@@ -32,8 +20,6 @@ if (mysqli_num_rows($login) != 0) {
   $Imie = str_replace(" ",'',$_POST['Imie']);
   $Login = str_replace(" ",'',$_POST['login']);
 
-  // $a = strpos($_POST['haslo'], " ");
-  // print($a);
   if (strpos($_POST['haslo'], " ")) {
     header("location: dodaj.php?haslo=1");
   } else { 
@@ -65,21 +51,5 @@ if (mysqli_num_rows($login) != 0) {
   }
   }
   }
-} 
-  
-
-
-
-
-// if ($row == null) {
-//     $_SESSION['zalogowany'] = 0;
-//     header("HTTP/1.1 301 Moved Permanently");
-// header("Location: php.php?Nieudany=1");
-// exit;
-// } 
-// else {
-//     setcookie("Ciastko","10");
-//     setcookie('oddano_glos', '1');
-// setcookie('oddano_glos', '1', time()+3600);
-
+}
 ?>

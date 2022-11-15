@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Oskar's stite</title>
+<title>ZSET</title>
 <!-- <link rel="stylesheet" href="styl.css"> -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -28,7 +28,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 <body>
     <div id="naglowek">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a href="php.php" class="navbar-brand">Oskar's<b>Site</b></a>  		
+	<a href="/" class="navbar-brand" style="margin-left:10px;"><img src="obrazy/Lzset.png" alt="zset" width="65" height="65"></a>
 	<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -36,9 +36,9 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 		<div class="navbar-nav">
         <a class="nav-item nav-link"
         
-        href="php.php"
+        href="/"
         <?php
-            if ($strona == "php.php"){
+            if ($strona == "/"){
                 print('class="active"');
             }
         ?>        
@@ -52,7 +52,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
                 print('class="active"');
             }
         ?>        
-        >O nas
+        >O szkole
     </a>
 
 <?php
@@ -61,13 +61,14 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
       print('<a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrator</a>');
       print('<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">');
       print('<a class="nav-item nav-link dropdown-item" href="pracownicy.php">Pracownicy</a>');
+      print('<a class="nav-item nav-link dropdown-item" href="nauczyciele.php">Nauczyciele</a>');
       print('<a class="nav-item nav-link dropdown-item" href="uczniowie.php">Uczniowie</a>');
       print('</div>');
       print('</div>');
   }
 ?>
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 30 && $_SESSION['zalogowany'] < 40 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400) {
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500 or ($_SESSION['zalogowany'] == 40)) {
     print('<a class="nav-item nav-link" href="pliki2.php">Pliki</a>');
   }
 ?>
@@ -88,7 +89,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 		</div>
         <?php
      
-     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 30 && $_SESSION['zalogowany'] < 40 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400) {
+     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500 or ($_SESSION['zalogowany'] == 40) or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400) {
          print('
          <div class="navbar-nav ml-auto action-buttons">
 			<div class="nav-item dropdown" style="padding: 5px;">

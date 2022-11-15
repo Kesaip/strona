@@ -5,7 +5,7 @@
     error_reporting( E_ALL );
 
     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] != 1) {
-      header("location: php.php?nie=1");
+      header("location: /?nie=1");
     } else {
         if (file_exists("/Users/oskar/Desktop/stronyglowne/uploads/"/*"/var/www/domex/uploads"*/.$_GET['name'])) {
             unlink("/Users/oskar/Desktop/stronyglowne/uploads/"/*"/var/www/domex/uploads/"*/.$_GET['nazwa']);

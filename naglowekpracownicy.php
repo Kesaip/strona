@@ -3,7 +3,7 @@
   session_start();
 
   if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
-    header("location: php.php");
+    header("location: /");
   }
     $strona = $_SERVER['PHP_SELF'];
 ?>
@@ -13,7 +13,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Oskar's stite</title>
+<title>ZSET</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -32,7 +32,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 <body>
     <div id="naglowek">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a href="php.php" class="navbar-brand">Oskar's<b>Site</b></a>  		
+	<a href="/" class="navbar-brand" style="margin-left:10px;"><img src="obrazy/Lzset.png" alt="zset" width="65" height="65"></a>
 	<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -40,9 +40,9 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 		<div class="navbar-nav">
         <a class="nav-item nav-link"
         
-        href="php.php"
+        href="/"
         <?php
-            if ($strona == "php.php"){
+            if ($strona == "/"){
                 print('class="active"');
             }
         ?>        
@@ -65,6 +65,7 @@ if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
     print('<a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrator</a>');
     print('<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">');
     print('<a class="nav-item nav-link dropdown-item" href="pracownicy.php">Pracownicy</a>');
+    print('<a class="nav-item nav-link dropdown-item" href="nauczyciele.php">Nauczyciele</a>');
     print('<a class="nav-item nav-link dropdown-item" href="uczniowie.php">Uczniowie</a>');
     print('</div>');
     print('</div>');

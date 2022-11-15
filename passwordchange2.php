@@ -7,57 +7,114 @@ $Zapytanie3 =  "SELECT Email,Haslo,LoginId,hash
 FROM loginytmp WHERE Email='".$_POST["email"]."' AND Haslo='".$_POST["kod"]."'";
 $odp = mysqli_query($conn,$Zapytanie3);
 if ($foundRows = mysqli_num_rows($odp)!=0) {
-
+    $Zapytanie2 =  "SELECT Email,Haslo,LoginId,hash
+FROM loginytmp WHERE potwierdzone = 'T'";
+    $odp2 = mysqli_query($conn,$Zapytanie2);
+    if ($foundRows2 = mysqli_num_rows($odp2)!=0) {
+header("location: /?nie");
+    }
     $Update = "UPDATE loginytmp SET potwierdzone='T' WHERE Email='" . $_POST["email"] . "' AND Haslo='" . $_POST["kod"] . "'";
 
     if ($conn->query($Update) === true) {
         echo "New record created successfully";
     } else {
-        header("location: php.php?zlykod=1");
+        header("location: /?zlykod=1");
     }
 } else {
-    header("location: php.php?zlykod=1");
+    header("location: /?zlykod=1");
     die;
 }
 $mail = "SELECT Email FROM loginytmp WHERE potwierdzone = 'T' AND Email = '".$_POST['email']."'";
 $email = mysqli_query($conn, $mail);
 if (mysqli_num_rows($email) == 0) {
-    header("location: php.php?nie");
+    header("location: /?nie");
 } else {
     $log = "SELECT Email FROM Uzytkownicy WHERE Email = '".$_POST['email']."'";
     $login = mysqli_query($conn, $log);
-    if (mysqli_num_rows($login) == 1) {
-        $Login = str_replace(" ",'',$_POST['email']);
-        $password = $_POST['haslo'];
-        if (strpos($_POST['haslo'], " ")) {
-            header("location: php.php?haslo=1");
+    if (mysqli_num_rows($login) != 1) {
+        $log2 = "SELECT Email FROM uczniowie WHERE Email = '" . $_POST['email'] . "'";
+        $login2 = mysqli_query($conn, $log2);
+        if (mysqli_num_rows($login2) != 1) {
+            $log3 = "SELECT Email FROM nauczyciele WHERE Email = '" . $_POST['email'] . "'";
+            $login3 = mysqli_query($conn, $log3);
+            if (mysqli_num_rows($login3) != 1) {
+                header('location: /?nie=1');
+            } else {
+                $Login = str_replace(" ", '', $_POST['email']);
+                $password = $_POST['haslo'];
+                if (strpos($_POST['haslo'], " ")) {
+                    header("location: /?haslo=1");
                 } else {
                     if (!filter_var($Login, FILTER_VALIDATE_EMAIL)) {
-                        header("location: php.php?zlyemail=1");
+                        header("location: /?zlyemail=1");
                     } else {
                         if ($_POST["haslo"] == $_POST["haslo2"]) {
-                            $Zapytanie =  "UPDATE Uzytkownicy SET Haslo='".$password."' WHERE Email = '".$_POST['email']."'";
-
-                            $Zapytanie2 =  "SELECT Nazwisko,Imie,OsobaId
-          FROM Uzytkownicy WHERE Email='".$_POST["login"]."' AND Haslo='".$_POST["haslo"]."'";
-                            $result = mysqli_query($conn, $Zapytanie2);
-                            $row = mysqli_fetch_assoc($result);
-                            $_SESSION['Id'] = $row['OsobaId'];
-                            $_SESSION['zalogowany'] = 2;
-                            $_SESSION['time']     = time()+600;
-                            if ($conn->query($Zapytanie) === TRUE) {
+                            $Zapytanie = "UPDATE nauczyciele SET Haslo='" . $password . "' WHERE Email = '" . $_POST['email'] . "'";
+                            if ($conn->query($Zapytanie) === true) {
                                 echo "New record created successfully";
-                                header("location: php.php?dodano=4");
+                                header("location: /?dodano=4");
                             } else {
                                 echo "Error: " . $conn->error;
                             }
 
                             $conn->close();
                         } else {
-                            header('location: php.php?haslo=1');
+                            header('location: /?haslo=1');
+                        }
+                    }
+                }
+            }
+        } else {
+            $Login = str_replace(" ", '', $_POST['email']);
+            $password = $_POST['haslo'];
+            if (strpos($_POST['haslo'], " ")) {
+                header("location: /?haslo=1");
+            } else {
+                if (!filter_var($Login, FILTER_VALIDATE_EMAIL)) {
+                    header("location: /?zlyemail=1");
+                } else {
+                    if ($_POST["haslo"] == $_POST["haslo2"]) {
+                        $Zapytanie = "UPDATE uczniowie SET Haslo='" . $password . "' WHERE Email = '" . $_POST['email'] . "'";
+                        if ($conn->query($Zapytanie) === true) {
+                            echo "New record created successfully";
+                            header("location: /?dodano=4");
+                        } else {
+                            echo "Error: " . $conn->error;
+                        }
+
+                        $conn->close();
+                    } else {
+                        header('location: /?haslo=1');
+                    }
+                }
+            }
+        }
+    }else{
+        $Login = str_replace(" ",'',$_POST['email']);
+        $password = $_POST['haslo'];
+        if (strpos($_POST['haslo'], " ")) {
+            header("location: /?haslo=1");
+                } else {
+                    if (!filter_var($Login, FILTER_VALIDATE_EMAIL)) {
+                        header("location: /?zlyemail=1");
+                    } else {
+                        if ($_POST["haslo"] == $_POST["haslo2"]) {
+                            $Zapytanie =  "UPDATE Uzytkownicy SET Haslo='".$password."' WHERE Email = '".$_POST['email']."'";
+                            if ($conn->query($Zapytanie) === TRUE) {
+                                echo "New record created successfully";
+                                header("location: /?dodano=4");
+                            } else {
+                                echo "Error: " . $conn->error;
+                            }
+
+                            $conn->close();
+                        } else {
+                            header('location: /?haslo=1');
                         }
                     }
                 }
             }
 }
+ini_set( 'display_errors', 'On' );
+error_reporting( E_ALL );
 ?>

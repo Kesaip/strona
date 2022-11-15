@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
-    header("location: php.php");
+    header("location: /");
 }
 
 ini_set( 'display_errors', 'On' );
