@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Oskar Piasecki - Uczniowie</title>
+    <title>Oskar Piasecki - Nauczyciele</title>
     <script>
         var check = function() {
             if (document.getElementById('haslo').value ==

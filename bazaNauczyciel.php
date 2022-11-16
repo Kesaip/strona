@@ -21,30 +21,26 @@ if (mysqli_num_rows($login) != 0) {
     if (strpos($_POST['haslo'], " ")) {
         header("location: dodajNauczyciela.php?haslo=1");
     } else {
-        if (!preg_match("/^[a-zA-Z]+$/",$_POST['Nazwisko'])) {
+        if (!preg_match("/^[a-zA-Z]+$/", $_POST['Nazwisko'])) {
             header("location: dodajNauczyciela.php?zlenazwisko=1");
         } else {
-            if (!preg_match("/^[a-zA-Z]+$/",$Imie)) {
+            if (!preg_match("/^[a-zA-Z]+$/", $Imie)) {
                 header("location: dodajNauczyciela.php?zleimie=1");
             } else {
-                if (!preg_match("/^[a-z0-9]*$/",$Login)) {
-                    header("location: dodajNauczyciela.php?zlylogin=1");
-                } else {
-                    if ($_POST["haslo"] == $_POST["haslo2"]) {
-                        $Zapytanie =  "INSERT INTO nauczyciele (Imie,Nazwisko,Email,haslo) VALUES ('".$Imie."','".$_POST["Nazwisko"]."','".$Login."','".$_POST["haslo"]."')";
+                if ($_POST["haslo"] == $_POST["haslo2"]) {
+                    $Zapytanie = "INSERT INTO nauczyciele (Imie,Nazwisko,Email,haslo) VALUES ('" . $Imie . "','" . $_POST["Nazwisko"] . "','" . $Login . "','" . $_POST["haslo"] . "')";
 
 
-                        if ($conn->query($Zapytanie) === TRUE) {
-                            echo "New record created successfully";
-                            header("location: nauczyciele.php?dodano=2");
-                        } else {
-                            echo "Error: " . $conn->error;
-                        }
-
-                        $conn->close();
+                    if ($conn->query($Zapytanie) === true) {
+                        echo "New record created successfully";
+                        header("location: nauczyciele.php?dodano=2");
                     } else {
-                        header("location: dodajNauczyciela.php?zlehaslo=1");
+                        echo "Error: " . $conn->error;
                     }
+
+                    $conn->close();
+                } else {
+                    header("location: dodajNauczyciela.php?zlehaslo=1");
                 }
             }
         }

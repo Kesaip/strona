@@ -14,7 +14,7 @@ $conn = polaczenieBaza();
     $Zapytanie =  "DELETE FROM nauczyciele WHERE nauczycielId=".$_GET['id'];
     if ($conn->query($Zapytanie) === TRUE) {
         echo "New record created successfully";
-        header("location: pracownicy.php?usunieto=1");
+        header("location: nauczyciele.php?usunieto=1");
     } else {
         echo "Error: " . $conn->error;
     }
