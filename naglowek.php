@@ -1,6 +1,14 @@
 
 <?php
     $strona = $_SERVER['PHP_SELF'];
+    require_once('funkcje/bazadanych.php');
+    $conn = polaczenieBaza();
+$Zapytanie=
+    "SELECT klasaId
+    FROM klasy
+    WHERE wychowawca =" .$_SESSION['Id'];
+$result = mysqli_query($conn,$Zapytanie);
+$row = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +77,9 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
   }
 ?>
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500 or isset($_SESSION['zalogowany']) && ['zalogowany'] == 40) {
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400
+      or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500
+      or isset($_SESSION['zalogowany']) && ['zalogowany'] == 40) {
     print('<a class="nav-item nav-link" href="pliki2.php">Pliki</a>');
   }
 ?>
@@ -84,13 +94,26 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
             if ($strona == "kontakt.php"){
                 print('class="active"');
             }
-        ?>        
+        ?>
         >Kontakt
-    </a>		
+    </a>
+      <?php if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 AND $_SESSION['zalogowany'] < 500) {
+          echo '<a class="nav-item nav-link"';
+          print("href='klasa.php?klasa=" . $row["klasaId"] . "'");
+          if ($strona == "klasa.php") {
+              print('class="active"');
+          }
+          echo ">Moja Klasa </a>";
+      }
+            ?>
 		</div>
         <?php
      
-     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 40 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400) {
+     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1
+         or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2
+         or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500
+         or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 40
+         or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400) {
          print('
          <div class="navbar-nav ml-auto action-buttons">
 			<div class="nav-item dropdown" style="padding: 5px;">

@@ -1,7 +1,6 @@
 
 <?php
   session_start();
-
   if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
     header("location: /");
   }

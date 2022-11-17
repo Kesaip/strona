@@ -1,5 +1,13 @@
 <?php
-require_once('naglowekpracownicy.php');
+session_start();
+if (isset($_SESSION['zalogowany'])
+    AND $_SESSION['zalogowany']>400
+    AND $_SESSION['zalogowany']<500
+    AND $_SESSION['zalogowany']==40 . $_GET["klasa"]){
+    require_once('naglowek.php');
+}else {
+    require_once('naglowekpracownicy.php');
+}
 require_once('funkcje/link.php');
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
@@ -28,9 +36,11 @@ $row2 = mysqli_fetch_assoc($result2)
         link1($_GET);
         echo"<h1 style='color: rgb(0, 174, 255)' class='cien'>Klasa ".$row2["klasa"]."</h1>";
         echo"<h3 style='color: rgb(0, 174, 255)'>Wychowawca: ".$row2["Imie2"]."".$row2["Nazwisko2"]."</h3>";
+        if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany'] == 1) {
+        echo'<br>';
+        echo'<a href="dodajUcznia.php"><i class="fa fa-user-plus fa-3x" style="padding: 5px;color: rgb(0,200,0)"></i></a>';
+        }
         ?>
-        <br>
-        <a href="dodajUcznia.php"><i class="fa fa-user-plus fa-3x" style='padding: 5px;color: rgb(0,200,0)'></i></a>
         <table class="table" style="text-align: center">
             <thead class="thead-dark">
             <tr>
@@ -38,8 +48,12 @@ $row2 = mysqli_fetch_assoc($result2)
                 <th scope="col">Imie</th>
                 <th scope="col">Nazwisko</th>
                 <th scope="col">Email</th>
-                <th scope="col">Edycja</th>
-                <th scope="col">Usuwanie</th>
+                <?php
+                if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany'] == 1) {
+                echo'<th scope="col">Edycja</th>';
+                echo'<th scope="col">Usuwanie</th>';
+                }
+                ?>
             </tr>
             <?php
             $helena = 0;
@@ -51,8 +65,10 @@ $row2 = mysqli_fetch_assoc($result2)
                     echo"<td>" . $row["Imie"]. "</td>";
                     echo"<td>" . $row["Nazwisko"]. "</td>";
                     echo"<td><a href='uczen.php?uczen=" . $row["uczenId"] ."'>" . $row["Email"] . "</a></td>";
-                    echo"<td> <a href='edytujUcznia.php?id=".$row["uczenId"]."'><i class='fa fa-pencil-square-o fa-2x' style='padding-right: 5px' aria-hidden='true'></i></a></td>";
-                    echo"<td><a href='usunUcznia.php?id=".$row["uczenId"]."'><i class='fa fa-trash fa-2x' style='padding-left: 5px;color: rgb(255,30,30)' aria-hidden='true'></i></a></td></tr>";
+                    if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany'] == 1) {
+                        echo "<td> <a href='edytujUcznia.php?id=" . $row["uczenId"] . "'><i class='fa fa-pencil-square-o fa-2x' style='padding-right: 5px' aria-hidden='true'></i></a></td>";
+                        echo "<td><a href='usunUcznia.php?id=" . $row["uczenId"] . "'><i class='fa fa-trash fa-2x' style='padding-left: 5px;color: rgb(255,30,30)' aria-hidden='true'></i></a></td></tr>";
+                    }
                 }
             } else {
                 echo "0 results";
