@@ -10,7 +10,10 @@ error_reporting( E_ALL );
 
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
-$log = "SELECT Email FROM nauczyciele WHERE Email = '".$_POST['Email']."'";
+$log =
+    "SELECT Email 
+    FROM nauczyciele 
+    WHERE Email = '".$_POST['Email']."'";
 $login = mysqli_query($conn, $log);
 if (mysqli_num_rows($login) != 0) {
     header("location: dodajNauczyciela.php?zajety=2");
@@ -28,7 +31,9 @@ if (mysqli_num_rows($login) != 0) {
                 header("location: dodajNauczyciela.php?zleimie=1");
             } else {
                 if ($_POST["haslo"] == $_POST["haslo2"]) {
-                    $Zapytanie = "INSERT INTO nauczyciele (Imie,Nazwisko,Email,haslo) VALUES ('" . $Imie . "','" . $_POST["Nazwisko"] . "','" . $Login . "','" . $_POST["haslo"] . "')";
+                    $Zapytanie =
+                        "INSERT INTO nauczyciele (Imie,Nazwisko,Email,haslo) 
+                        VALUES ('" . $Imie . "','" . $_POST["Nazwisko"] . "','" . $Login . "','" . $_POST["haslo"] . "')";
 
 
                     if ($conn->query($Zapytanie) === true) {

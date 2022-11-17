@@ -7,36 +7,63 @@ $conn = polaczenieBaza();
 
 define('ROLA_UCZEN', 30);
 
-$Zapytanie =  "SELECT Nazwisko,Imie,OsobaId
-    FROM Uzytkownicy WHERE Email='".$_POST["login"]."' AND Haslo='".$_POST["haslo"]."'";
+$Zapytanie =
+    "SELECT 
+        Nazwisko,
+        Imie,
+        OsobaId
+    FROM Uzytkownicy 
+    WHERE Email='".$_POST["login"]."' 
+    AND Haslo='".$_POST["haslo"]."'";
 $result = mysqli_query($conn, $Zapytanie);
 $row = mysqli_fetch_assoc($result);
 if ($row == null) {
     $_SESSION['zalogowany'] = 0;
-    $Zapytanie = "SELECT Nazwisko,Imie,uczenId
-        FROM uczniowie WHERE Email='" . $_POST["login"] . "' AND Haslo='" . $_POST["haslo"] . "'";
+    $Zapytanie =
+        "SELECT 
+            Nazwisko,
+            Imie,
+            uczenId
+        FROM uczniowie 
+        WHERE Email='" . $_POST["login"] . "' 
+        AND Haslo='" . $_POST["haslo"] . "'";
     $result = mysqli_query($conn, $Zapytanie);
     $row = mysqli_fetch_assoc($result);
-    $Zapytanie2 = "SELECT klasaId
+    $Zapytanie2 =
+        "SELECT klasaId
         FROM klasy";
     $result2 = mysqli_query($conn, $Zapytanie2);
     $row2 = mysqli_fetch_assoc($result2);
     $klasa = $row2['klasaId'];
     if ($row == null) {
         $_SESSION['zalogowany'] = 0;
-        $Zapytanie = "SELECT Nazwisko,Imie,nauczycielId
-        FROM nauczyciele WHERE Email='" . $_POST["login"] . "' AND Haslo='" . $_POST["haslo"] . "'";
+        $Zapytanie =
+            "SELECT 
+                Nazwisko,
+                Imie,
+                nauczycielId
+        FROM nauczyciele 
+        WHERE Email='" . $_POST["login"] . "' 
+        AND Haslo='" . $_POST["haslo"] . "'";
         $result = mysqli_query($conn, $Zapytanie);
         $row = mysqli_fetch_assoc($result);
-        $Zapytanie2 = "SELECT klasaId
-        FROM klasy WHERE wychowawca ='" .$row["nauczycielId"]. "'";
+        $Zapytanie2 =
+            "SELECT klasaId
+            FROM klasy 
+            WHERE wychowawca ='" .$row["nauczycielId"]. "'";
         $result2 = mysqli_query($conn, $Zapytanie2);
         $row2 = mysqli_fetch_assoc($result2);
         $klasa = $row2['klasaId'];
         if ($row == null) {
             $_SESSION['zalogowany'] = 0;
-            $Zapytanie = "SELECT Nazwisko,Imie,PracownikId
-        FROM Pracownicy WHERE Login='" . $_POST["login"] . "' AND Haslo='" . $_POST["haslo"] . "'";
+            $Zapytanie =
+                "SELECT 
+                    Nazwisko,
+                    Imie,
+                    PracownikId
+                FROM Pracownicy 
+                WHERE Login='" . $_POST["login"] . "' 
+                AND Haslo='" . $_POST["haslo"] . "'";
             $result = mysqli_query($conn, $Zapytanie);
             $row = mysqli_fetch_assoc($result);
             if ($row == null) {

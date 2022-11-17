@@ -6,23 +6,41 @@ require_once('funkcje/link.php');
 require_once ('funkcje/imiona.php');
 $conn = polaczenieBaza();
 if (isset($_SESSION['Id'])) {
-    $Zapytanie = "SELECT Nazwisko,Imie,PracownikId
-  FROM Pracownicy
-  WHERE PracownikId = '" . $_SESSION['Id'] . "'";
+    $Zapytanie =
+        "SELECT 
+            Nazwisko,
+            Imie,
+            PracownikId
+        FROM Pracownicy
+        WHERE PracownikId = '" . $_SESSION['Id'] . "'";
 
     $result = mysqli_query($conn, $Zapytanie);
     $row = mysqli_fetch_assoc($result);
-    $Zapytanie2 = "SELECT Nazwisko,Imie,OsobaId
-    FROM Uzytkownicy
-    WHERE OsobaId = '" . $_SESSION['Id'] . "'";
+    $Zapytanie2 =
+        "SELECT 
+            Nazwisko,
+            Imie,
+            OsobaId
+        FROM Uzytkownicy
+        WHERE OsobaId = '" . $_SESSION['Id'] . "'";
     $result2 = mysqli_query($conn, $Zapytanie2);
     $row2 = mysqli_fetch_assoc($result2);
-    $Zapytanie3 = "SELECT Nazwisko,Imie,uczenId
-        FROM uczniowie WHERE uczenId = '". $_SESSION['Id'] . "'";
+    $Zapytanie3 =
+        "SELECT 
+            Nazwisko,
+            Imie,
+            uczenId
+        FROM uczniowie 
+        WHERE uczenId = '". $_SESSION['Id'] . "'";
     $result3 = mysqli_query($conn, $Zapytanie3);
     $row3 = mysqli_fetch_assoc($result3);
-    $Zapytanie4 = "SELECT nazwisko,Imie,nauczycielId
-        FROM nauczyciele WHERE nauczycielId = '". $_SESSION['Id'] . "'";
+    $Zapytanie4 =
+        "SELECT 
+            nazwisko,
+            Imie,
+            nauczycielId
+        FROM nauczyciele 
+        WHERE nauczycielId = '". $_SESSION['Id'] . "'";
     $result4 = mysqli_query($conn, $Zapytanie4);
     $row4 = mysqli_fetch_assoc($result4);
     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {

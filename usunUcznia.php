@@ -12,8 +12,14 @@ require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 
     print($_GET["id"]);
-    $Zapytanie =  "DELETE FROM uczniowie WHERE uczenId=".$_GET['id'];
-    $Zapytanie2 = "DELETE FROM przydzial WHERE uczen = ".$_GET['id'];
+    $Zapytanie =
+        "DELETE 
+        FROM uczniowie 
+        WHERE uczenId=".$_GET['id'];
+    $Zapytanie2 =
+        "DELETE 
+        FROM przydzial 
+        WHERE uczen = ".$_GET['id'];
     if ($conn->query($Zapytanie2) === TRUE AND $conn->query($Zapytanie) === TRUE) {
         echo "New record created successfully";
         header("location: uczniowie.php?usunieto=1");

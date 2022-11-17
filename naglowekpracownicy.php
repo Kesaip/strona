@@ -67,6 +67,7 @@ if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
     print('<a class="nav-item nav-link dropdown-item" href="pracownicy.php">Pracownicy</a>');
     print('<a class="nav-item nav-link dropdown-item" href="nauczyciele.php">Nauczyciele</a>');
     print('<a class="nav-item nav-link dropdown-item" href="uczniowie.php">Uczniowie</a>');
+    print('<a class="nav-item nav-link dropdown-item" href="klasy.php">Klasy</a>');
     print('</div>');
     print('</div>');
   }

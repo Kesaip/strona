@@ -1,8 +1,15 @@
 <?php
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
-$Zapytanie =  "SELECT Nazwisko,Imie,Email,nauczycielId,haslo
-  FROM nauczyciele WHERE nauczycielId=".$_GET['id'];
+$Zapytanie =
+    "SELECT 
+        Nazwisko,
+        Imie,
+        Email,
+        nauczycielId,
+        haslo
+    FROM nauczyciele 
+    WHERE nauczycielId=".$_GET['id'];
 $result = mysqli_query($conn, $Zapytanie);
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {

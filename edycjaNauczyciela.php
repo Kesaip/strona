@@ -11,7 +11,14 @@ $Zmiana=0;
 
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
-$Zapytanie =  "SELECT Nazwisko,Imie,Email,haslo FROM nauczyciele WHERE nauczycielId='".$_POST['id']."'";
+$Zapytanie =
+    "SELECT 
+        Nazwisko,
+        Imie,
+        Email,
+        haslo 
+        FROM nauczyciele 
+        WHERE nauczycielId='".$_POST['id']."'";
 $result = mysqli_query($conn, $Zapytanie);
 if ($result->num_rows > 0) {
 
@@ -43,12 +50,18 @@ if ($_POST["haslo"] == $_POST["haslo2"]) {
             } else {
                 if ($Zmiana == 2) {
 
-                    $log = "SELECT Email FROM nauczyciele WHERE Email = '" . $_POST['Email'] . "'";
+                    $log =
+                        "SELECT Email 
+                        FROM nauczyciele 
+                        WHERE Email = '" . $_POST['Email'] . "'";
                     $login = mysqli_query($conn, $log);
                     if (mysqli_num_rows($login) != 0) {
                         header("location: nauczyciele.php?zajety=2");
                     } else {
-                        $Zapytanie = "UPDATE nauczyciele SET Imie='" . $Imie . "',Nazwisko='" . $_POST['Nazwisko'] . "',Email='" . $Login . "',haslo='" . $_POST['haslo'] . "' WHERE nauczycielId='" . $_POST['id'] . "'";
+                        $Zapytanie =
+                            "UPDATE nauczyciele 
+                            SET Imie='" . $Imie . "',Nazwisko='" . $_POST['Nazwisko'] . "',Email='" . $Login . "',haslo='" . $_POST['haslo'] . "' 
+                            WHERE nauczycielId='" . $_POST['id'] . "'";
                         if ($conn->query($Zapytanie) === true) {
                             echo "New record created successfully";
 
@@ -60,7 +73,10 @@ if ($_POST["haslo"] == $_POST["haslo2"]) {
                 } else {
 
                     if ($Zmiana == 1) {
-                        $Zapytanie = "UPDATE nauczyciele SET Imie='" . $_POST['Imie'] . "',Nazwisko='" . $_POST['Nazwisko']/*."',Login='".$_POST['Login']*/ . "',haslo='" . $_POST['haslo'] . "' WHERE nauczycieleId='" . $_POST['id'] . "'";
+                        $Zapytanie =
+                            "UPDATE nauczyciele 
+                            SET Imie='" . $_POST['Imie'] . "',Nazwisko='" . $_POST['Nazwisko'] . "',haslo='" . $_POST['haslo'] . "' 
+                            WHERE nauczycieleId='" . $_POST['id'] . "'";
 
 
                         if ($conn->query($Zapytanie) === true) {

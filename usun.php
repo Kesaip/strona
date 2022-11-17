@@ -13,7 +13,10 @@ $conn = polaczenieBaza();
 
 if ($_SESSION['Id'] != $_GET['id']) {
   print($_GET["id"]);
-$Zapytanie =  "DELETE FROM Pracownicy WHERE PracownikId=".$_GET['id'];
+$Zapytanie =
+    "DELETE 
+    FROM Pracownicy 
+    WHERE PracownikId=".$_GET['id'];
 if ($conn->query($Zapytanie) === TRUE) {
   echo "New record created successfully";
   header("location: pracownicy.php?usunieto=1");

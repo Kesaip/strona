@@ -11,7 +11,10 @@ error_reporting( E_ALL );
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 
-    $Zapytanie =  "DELETE FROM nauczyciele WHERE nauczycielId=".$_GET['id'];
+    $Zapytanie =
+        "DELETE 
+        FROM nauczyciele 
+        WHERE nauczycielId=".$_GET['id'];
     if ($conn->query($Zapytanie) === TRUE) {
         echo "New record created successfully";
         header("location: nauczyciele.php?usunieto=1");

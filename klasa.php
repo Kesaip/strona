@@ -1,53 +1,56 @@
 <?php
 require_once('naglowekpracownicy.php');
 require_once('funkcje/link.php');
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
+$Zapytanie =  "
+    SELECT 
+        klasy.klasa,
+        klasy.wychowawca,
+        uczniowie.Email,
+        uczniowie.Imie,
+        uczniowie.Nazwisko,
+        uczniowie.uczenId,
+        nauczyciele.Imie AS Imie2,
+        nauczyciele.Nazwisko AS Nazwisko2
+    FROM klasy
+    LEFT JOIN nauczyciele ON nauczyciele.nauczycielId = klasy.wychowawca
+    LEFT JOIN przydzial ON przydzial.klasa1 = klasy.klasaId
+    LEFT JOIN uczniowie ON uczniowie.uczenId = przydzial.uczen
+    WHERE klasy.klasaId ='" .$_GET["klasa"]."'";
+$result2 = mysqli_query($conn, $Zapytanie);
+$row2 = mysqli_fetch_assoc($result2)
 ?>
 <div id="tresc_pracownicy">
     <br>
     <center>
         <?php
         link1($_GET);
+        echo"<h1 style='color: rgb(0, 174, 255)' class='cien'>Klasa ".$row2["klasa"]."</h1>";
+        echo"<h3 style='color: rgb(0, 174, 255)'>Wychowawca: ".$row2["Imie2"]."".$row2["Nazwisko2"]."</h3>";
         ?>
+        <br>
         <a href="dodajUcznia.php"><i class="fa fa-user-plus fa-3x" style='padding: 5px;color: rgb(0,200,0)'></i></a>
         <table class="table" style="text-align: center">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Imię</th>
+                <th scope="col">Imie</th>
                 <th scope="col">Nazwisko</th>
                 <th scope="col">Email</th>
-                <th scope="col">Klasa</th>
                 <th scope="col">Edycja</th>
                 <th scope="col">Usuwanie</th>
             </tr>
             <?php
             $helena = 0;
-            require_once('funkcje/bazadanych.php');
-            $conn = polaczenieBaza();
-            $Zapytanie =
-            "SELECT 
-                uczniowie.Nazwisko,
-                uczniowie.Imie,
-                uczniowie.uczenId,
-                uczniowie.Email,
-                klasy.klasa,
-                klasy.klasaId,
-                przydzial.klasa1,
-                przydzial.uczen
-            FROM uczniowie, 
-                 klasy, 
-                 przydzial
-            WHERE uczniowie.uczenId = przydzial.uczen 
-            AND klasy.klasaId = przydzial.klasa1";
             $result = mysqli_query($conn, $Zapytanie);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     $helena++;
                     echo"<tr><td>".$helena."</td>";
                     echo"<td>" . $row["Imie"]. "</td>";
-                    echo"<td>" . $row["Nazwisko"] . "</td>";
-                    echo"<td><a href='uczen.php?" . $row["uczenId"] ."'>" . $row["Email"] . "</a></td>";
-                    echo"<td>" . $row["klasa"] ."</td>";
+                    echo"<td>" . $row["Nazwisko"]. "</td>";
+                    echo"<td><a href='uczen.php?uczen=" . $row["uczenId"] ."'>" . $row["Email"] . "</a></td>";
                     echo"<td> <a href='edytujUcznia.php?id=".$row["uczenId"]."'><i class='fa fa-pencil-square-o fa-2x' style='padding-right: 5px' aria-hidden='true'></i></a></td>";
                     echo"<td><a href='usunUcznia.php?id=".$row["uczenId"]."'><i class='fa fa-trash fa-2x' style='padding-left: 5px;color: rgb(255,30,30)' aria-hidden='true'></i></a></td></tr>";
                 }

@@ -1,8 +1,15 @@
 <?php
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
-$Zapytanie =  "SELECT Nazwisko,Imie,Email,uczenId,Haslo
-  FROM uczniowie WHERE uczenId=".$_GET['id'];
+$Zapytanie =
+    "SELECT 
+        Nazwisko,
+        Imie,
+        Email,
+        uczenId,
+        Haslo
+    FROM uczniowie 
+    WHERE uczenId=".$_GET['id'];
 $result = mysqli_query($conn, $Zapytanie);
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
@@ -59,8 +66,9 @@ require_once('naglowekpracownicy.php');
             <select id="klasa" name="klasa">
                 <option selected disabled hidden>Wybierz klase</option>
                 <?php
-                $Zapytanie2 =  "SELECT klasa
-            FROM klasy";
+                $Zapytanie2 =
+                    "SELECT klasa
+                    FROM klasy";
                 $result2 = mysqli_query($conn, $Zapytanie2);
                 if ($result2->num_rows > 0) {
                     while($row2 = $result2->fetch_assoc()) {

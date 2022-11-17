@@ -13,9 +13,15 @@ $Zmiana=0;
 
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
-$Zapytanie =  "SELECT Nazwisko,Imie,Login,Haslo FROM Pracownicy WHERE PracownikId='".$_POST['id']."'";
+$Zapytanie =
+    "SELECT 
+        Nazwisko,
+        Imie,
+        Login,
+        Haslo 
+    FROM Pracownicy 
+    WHERE PracownikId='".$_POST['id']."'";
     $result = mysqli_query($conn, $Zapytanie);
-    //   $row = mysqli_fetch_assoc($result);
       if ($result->num_rows > 0) {
         
         while($row = $result->fetch_assoc()) {
@@ -51,12 +57,18 @@ if ($_POST["haslo"] == $_POST["haslo2"]) {
         } else {
     if ($Zmiana == 2) {
 
-        $log = "SELECT Login FROM Pracownicy WHERE Login = '".$_POST['Login']."'";
+        $log =
+            "SELECT Login 
+            FROM Pracownicy 
+            WHERE Login = '".$_POST['Login']."'";
         $login = mysqli_query($conn, $log);
         if (mysqli_num_rows($login) != 0) {
             header("location: pracownicy.php?zajety=2");
         } else {
-            $Zapytanie =  "UPDATE Pracownicy SET Imie='".$Imie."',Nazwisko='".$_POST['Nazwisko']."',Login='".$Login."',Haslo='".$_POST['haslo']."' WHERE PracownikId='".$_POST['id']."'";
+            $Zapytanie =
+                "UPDATE Pracownicy 
+                SET Imie='".$Imie."',Nazwisko='".$_POST['Nazwisko']."',Login='".$Login."',Haslo='".$_POST['haslo']."' 
+                WHERE PracownikId='".$_POST['id']."'";
             if ($conn->query($Zapytanie) === TRUE) {
                 echo "New record created successfully";
                 
@@ -68,7 +80,10 @@ if ($_POST["haslo"] == $_POST["haslo2"]) {
     } else {
     
         if ($Zmiana == 1) {
-    $Zapytanie =  "UPDATE Pracownicy SET Imie='".$_POST['Imie']."',Nazwisko='".$_POST['Nazwisko']/*."',Login='".$_POST['Login']*/."',Haslo='".$_POST['haslo']."' WHERE PracownikId='".$_POST['id']."'";
+    $Zapytanie =
+        "UPDATE Pracownicy 
+        SET Imie='".$_POST['Imie']."',Nazwisko='".$_POST['Nazwisko']."',Haslo='".$_POST['haslo']."' 
+        WHERE PracownikId='".$_POST['id']."'";
     
 
 if ($conn->query($Zapytanie) === TRUE) {
