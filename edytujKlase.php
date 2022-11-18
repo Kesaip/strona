@@ -27,7 +27,7 @@ $row2 = mysqli_fetch_assoc($result2);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Oskar Piasecki - Klasy</title>
+    <title>ZSET - Klasy</title>
     <script>
         var check = function() {
             if (document.getElementById('haslo').value ==

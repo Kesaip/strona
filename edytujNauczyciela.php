@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Oskar Piasecki - Nauczyciele</title>
+    <title>ZSET - Nauczyciele</title>
     <script>
         var check = function() {
             if (document.getElementById('haslo').value ==

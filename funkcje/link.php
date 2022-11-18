@@ -186,5 +186,11 @@ elseif (isset($_GET["Nieudany"])) {
         <strong>Sukces!</strong> Pomyślnie się zalogowałeś.
       </div>');
     }
+    elseif (isset($_GET["zajete"]) && $_GET['zajete']==5) {
+        print('<div class="alert alert-warning  alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Oops!</strong> Ta klasa już uczy się tego przedmiotu.
+              </div>');
+    }
 }
 

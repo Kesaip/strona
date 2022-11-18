@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Oskar Piasecki - Nauczyciele</title>
+    <title>ZSET - Nauczyciele</title>
     <script>
         var check = function() {
             if (document.getElementById('haslo').value ==
@@ -46,7 +46,7 @@ require_once('funkcje/link.php');
             <span id='potwierdzenie'></span>
             </label>
             <center>
-                <a href="nauczyciel.php"><span class="btn btn-danger" style="margin: 10px;"  id="dodaj">Cofnij</span></a>
+                <a href="nauczyciele.php"><span class="btn btn-danger" style="margin: 10px;"  id="dodaj">Cofnij</span></a>
                 <button class="btn btn-primary"  style="margin: 10px;" id="dodaj">Dodaj</button>
             </center>
         </form>

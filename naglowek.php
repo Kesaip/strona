@@ -3,12 +3,14 @@
     $strona = $_SERVER['PHP_SELF'];
     require_once('funkcje/bazadanych.php');
     $conn = polaczenieBaza();
-$Zapytanie=
-    "SELECT klasaId
+    if (isset($_SESSION['Id'])) {
+        $Zapytanie =
+            "SELECT klasaId
     FROM klasy
-    WHERE wychowawca =" .$_SESSION['Id'];
-$result = mysqli_query($conn,$Zapytanie);
-$row = mysqli_fetch_assoc($result);
+    WHERE wychowawca ='" . $_SESSION['Id'] . "'";
+        $result = mysqli_query($conn, $Zapytanie);
+        $row = mysqli_fetch_assoc($result);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +74,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
       print('<a class="nav-item nav-link dropdown-item" href="nauczyciele.php">Nauczyciele</a>');
       print('<a class="nav-item nav-link dropdown-item" href="uczniowie.php">Uczniowie</a>');
       print('<a class="nav-item nav-link dropdown-item" href="klasy.php">Klasy</a>');
+      print('<a class="nav-item nav-link dropdown-item" href="uczenie.php">Nauczanie</a>');
       print('</div>');
       print('</div>');
   }

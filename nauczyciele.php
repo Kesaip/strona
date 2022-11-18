@@ -32,7 +32,8 @@ require_once('funkcje/link.php');
                     nauczyciele.nauczycielId,
                     klasy.wychowawca
                 FROM nauczyciele
-                LEFT JOIN klasy ON nauczyciele.nauczycielId = klasy.wychowawca";
+                LEFT JOIN klasy ON nauczyciele.nauczycielId = klasy.wychowawca
+                ORDER BY nauczyciele.Nazwisko";
             $result = mysqli_query($conn, $Zapytanie);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {

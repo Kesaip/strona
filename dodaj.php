@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <title>Oskar Piasecki - Pracownicy</title>
+      <title>ZSET - Pracownicy</title>
       <script>
         var check = function() {
         if (document.getElementById('haslo').value ==

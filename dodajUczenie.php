@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ZSET - Klasy</title>
+    <title>ZSET - Nauczanie</title>
     <script>
         var check = function() {
             if (document.getElementById('haslo').value ==
@@ -21,6 +21,17 @@
 <?php
 require_once('naglowekpracownicy.php');
 require_once('funkcje/link.php');
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
+$Zapytanie =
+    "SELECT Email
+    FROM nauczyciele";
+$Zapytanie2 =
+    "SELECT przedmiot
+    FROM przedmioty";
+$Zapytanie3 =
+    "SELECT klasa
+    FROM klasy"
 ?>
 <div id="tresc_pracownicy">
     <?php
@@ -30,25 +41,12 @@ require_once('funkcje/link.php');
     <br>
     <div class="container">
         <br>
-        <form action='bazaKlasa.php' method="post" id="baza">
-            <label for='klasa'><b>Klasa</b></label>
-            <input type="text" class="form-control" placeholder="Wprowadź klasę" name="klasa" required/>
-            <br>
+        <form action='bazaUczenie.php' method="post" id="baza">
             <select id="Email" name="Email">
                 <?php
-                $helena = 0;
-                require_once('funkcje/bazadanych.php');
-                $conn = polaczenieBaza();
-                $Zapytanie =
-                "SELECT 
-                    nauczyciele.Email,
-                    nauczyciele.nauczycielId
-                FROM nauczyciele
-                WHERE nauczyciele.nauczycielId NOT IN (SELECT sub_klasy.wychowawca FROM klasy sub_klasy)";
                 $result = mysqli_query($conn, $Zapytanie);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                        $helena++;
                         echo "<option>" . $row["Email"] . "</option>";
                     }
                 }else{
@@ -56,8 +54,33 @@ require_once('funkcje/link.php');
                 }
                 ?>
             </select>
+            <br>
+            <select id="klasa" name="klasa">
+                <?php
+                $result = mysqli_query($conn, $Zapytanie3);
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<option>" . $row["klasa"] . "</option>";
+                    }
+                }else{
+                    echo "0 results";
+                }
+                ?>
+            </select>
+            <select id="przedmiot" name="przedmiot">
+                <?php
+                $result = mysqli_query($conn, $Zapytanie2);
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<option>" . $row["przedmiot"] . "</option>";
+                    }
+                }else{
+                    echo "0 results";
+                }
+                ?>
+            </select>
             <center>
-                <a href="klasy.php"><span class="btn btn-danger" style="margin: 10px;"  id="dodaj">Cofnij</span></a>
+                <a href="uczenie.php"><span class="btn btn-danger" style="margin: 10px;"  id="dodaj">Cofnij</span></a>
                 <button class="btn btn-primary"  style="margin: 10px;" id="dodaj">Dodaj</button>
             </center>
         </form>

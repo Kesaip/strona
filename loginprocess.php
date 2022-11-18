@@ -6,6 +6,9 @@ require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 
 define('ROLA_UCZEN', 30);
+define('ROLA_NAUCZYCIEL', 40);
+define('ROLA_PRACOWNIK', 1);
+define('ROLA_OSOBA', 2);
 
 $Zapytanie =
     "SELECT 
@@ -74,14 +77,14 @@ if ($row == null) {
             }
 
             $_SESSION['Id'] = $row['PracownikId'];
-            $_SESSION['zalogowany'] = 1;
+            $_SESSION['zalogowany'] = ROLA_PRACOWNIK;
             $_SESSION['session_time'] = time() + 600;
             header("Location: pracownicy.php?udanie");
             exit;
 
         }else{
             $_SESSION['Id'] = $row['nauczycielId'];
-            $_SESSION['zalogowany'] = 40 . $klasa;
+            $_SESSION['zalogowany'] = ROLA_NAUCZYCIEL . $klasa;
             $_SESSION['time'] = time() + 600;
             header("Location: pracownicy.php?udanie");
             exit;
@@ -95,7 +98,7 @@ if ($row == null) {
     }
 }else {
     $_SESSION['Id'] = $row['OsobaId'];
-    $_SESSION['zalogowany'] = 2;
+    $_SESSION['zalogowany'] = ROLA_OSOBA;
     $_SESSION['time']     = time()+600;
     header("Location: ".$_SERVER['HTTP_REFERER'].'?udanie');
 }

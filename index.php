@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require_once('funkcje/bazadanych.php');
 require_once('funkcje/link.php');

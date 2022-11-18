@@ -30,7 +30,12 @@ if ($_SESSION['Id'] != $_GET['id']) {
         "DELETE 
         FROM przydzial
         WHERE przydzial.klasa1 =" . $_GET['id'];
-    if ($conn->query($Zapytanie5) === true) {
+    $Zapytanie7 =
+        "DELETE 
+                FROM uczenie
+                WHERE uczonaKlasa =" . $_GET['id'];
+    if ($conn->query($Zapytanie5) === true
+    and $conn->query($Zapytanie7) === true){
         $Zapytanie3 =
             "INSERT INTO usuniete (klasa,usuniecie)
         VALUES('" . $klasa . "','" . $data . "')";
