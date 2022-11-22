@@ -4,6 +4,9 @@ session_start();
 if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1 AND ($_SESSION['zalogowany'] < 400 or $_SESSION['zalogowany'] > 500) AND $_SESSION['zalogowany'] != 40) {
     header("location: /");
 }
+if ($_SESSION['Id'] != $_GET["nauczyciel"]){
+    header("location:/?nie");
+}
 ini_set( 'display_errors', 'On' );
 error_reporting( E_ALL );
 require_once('funkcje/bazadanych.php');

@@ -38,6 +38,9 @@ if ($result->num_rows > 0) {
         $nauczyciel = $row["nauczyciel"];
         $klasa = $row["klasa"];
         $przedmiot = $row["przedmiot"];
+        if ($_SESSION['Id'] != $nauczyciel){
+            header("location:/?nie");
+        }
     }
 }
 if ($nazwa != $_POST['nazwa']) {$Zmiana=1;}

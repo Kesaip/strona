@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 $Zapytanie =
@@ -27,6 +28,9 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
+if ($_SESSION['Id'] != $nauczyciel){
+    header("location:/?nie");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,7 +53,6 @@ if ($result->num_rows > 0) {
 </head>
 <body>
 <?php
-session_start();
 if (isset($_SESSION['zalogowany'])
     AND $_SESSION['zalogowany']>400
     AND $_SESSION['zalogowany']<500

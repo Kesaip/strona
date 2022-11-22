@@ -17,6 +17,9 @@ $Zapytanie2 =
         WHERE id ='" .$_GET['id']."'";
 $result = mysqli_query($conn,$Zapytanie2);
 $row = mysqli_fetch_assoc($result);
+if ($_SESSION['Id'] != $row["nauczyciel"]){
+    header("location:/?nie");
+}
 $Zapytanie =
     "DELETE 
     FROM zadania

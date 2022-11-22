@@ -28,6 +28,9 @@ if (isset($_SESSION['zalogowany'])
 }else {
     require_once('naglowekpracownicy.php');
 }
+if ($_SESSION['Id'] != $_GET["nauczyciel"]){
+    header("location:/?nie");
+}
 require_once('funkcje/link.php');
 ?>
 <div id="tresc_pracownicy">

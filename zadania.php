@@ -8,6 +8,9 @@ if (isset($_SESSION['zalogowany'])
 }else {
     require_once('naglowekpracownicy.php');
 }
+if ($_SESSION['Id'] != $_GET["nauczyciel"]){
+    header("location:/?nie");
+}
 require_once('funkcje/link.php');
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
