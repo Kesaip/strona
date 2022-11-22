@@ -26,6 +26,7 @@ $Zapytanie =  "
     LEFT JOIN przydzial ON przydzial.klasa1 = klasy.klasaId
     LEFT JOIN uczniowie ON uczniowie.uczenId = przydzial.uczen
     WHERE klasy.klasaId ='" .$_GET["klasa"]."'
+    AND klasy.wychowawca ='" .$_SESSION["Id"]."'
     ORDER BY uczniowie.Nazwisko";
 $result2 = mysqli_query($conn, $Zapytanie);
 $row2 = mysqli_fetch_assoc($result2)

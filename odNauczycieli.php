@@ -41,7 +41,8 @@ $Zapytanie =  "
                     echo"<tr><td>".$helena."</td>";
                     echo"<td>" . $row["klasa"]. "</td>";
                     echo"<td>" . $row["przedmiot"]. "</td>";
-                    echo"<td><a href='plikiadm.php?nauczyciel=" . $row["nauczyciel"] ."?klasa=".$row["klasaId"]."?przedmiot=".$row["przedmiotId"]."'>---></a></td>";
+                    echo"<td><a href='zadania.php?nauczyciel=";
+                    echo $row["nauczyciel"]."&klasa=".$row["klasaId"]."&przedmiot=".$row["przedmiotId"]."'>---></a></td>";
                 }
             } else {
                 echo "brak klas";

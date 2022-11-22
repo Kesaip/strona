@@ -10,17 +10,28 @@ error_reporting( E_ALL );
 
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
-
+$Zapytanie2 =
+    "DELETE 
+    FROM uczenie
+    WHERE nauczyciel =" . $_GET['id'];
+$Zapytanie3 =
+    "DELETE 
+    FROM zadania
+    WHERE nauczyciel =" . $_GET['id'];
+if ($conn->query($Zapytanie2) === TRUE
+AND $conn->query($Zapytanie3 === TRUE)) {
     $Zapytanie =
         "DELETE 
         FROM nauczyciele 
-        WHERE nauczycielId=".$_GET['id'];
-    if ($conn->query($Zapytanie) === TRUE) {
+        WHERE nauczycielId=" . $_GET['id'];
+    if ($conn->query($Zapytanie) === true) {
         echo "New record created successfully";
         header("location: nauczyciele.php?usunieto=1");
     } else {
         echo "Error: " . $conn->error;
     }
+}else{
+    echo "Error: " . $conn->error;
+}
     $conn->close();
-
 ?>

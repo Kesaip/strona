@@ -4,12 +4,12 @@
   ini_set( 'display_errors', 'On' ); 
 error_reporting( E_ALL );
 
-  if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1 AND $_SESSION['zalogowany'] != 401) {
+if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1 AND ($_SESSION['zalogowany'] < 400 or $_SESSION['zalogowany'] > 500) AND $_SESSION['zalogowany'] != 40) {
       header("location: /?nie=1");
-  }
-  require_once('naglowek.php');
-  require_once('funkcje/link.php');
-  link1($_GET);
+}
+require_once('naglowek.php');
+require_once('funkcje/link.php');
+link1($_GET);
 ?>
 <center>
 <form action="uploadadm.php" method="post" enctype="multipart/form-data">
