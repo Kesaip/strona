@@ -70,7 +70,7 @@ if ($row == null) {
             $result = mysqli_query($conn, $Zapytanie);
             $row = mysqli_fetch_assoc($result);
             if ($row == null) {
-                $_SESSION['zalogowany'] = 0;
+                session_destroy();
                 header("HTTP/1.1 301 Moved Permanently");
                 header("Location: /?Nieudany=1");
                 exit;

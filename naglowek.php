@@ -112,11 +112,11 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 		</div>
         <?php
      
-     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1
+     if (isset($_SESSION['zalogowany'])/* && $_SESSION['zalogowany'] == 1
          or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2
          or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500
          or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 40
-         or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400) {
+         or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400*/) {
          print('
          <div class="navbar-nav ml-auto action-buttons">
 			<div class="nav-item dropdown" style="padding: 5px;">
