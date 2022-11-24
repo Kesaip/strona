@@ -2,7 +2,7 @@
 
 ini_set( 'display_errors', 'On' ); 
 error_reporting( E_ALL );
-
+date_default_timezone_set('Europe/Warsaw');
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 $data=date("Y-m-d");
@@ -35,5 +35,16 @@ if ($conn->query($usuwanie3) === TRUE) {
 } else {
   echo "";
 }
+$data4 = date("Y-m-d G:i:s");
+print($data4);
+$usuwanie4 =
+    "UPDATE zadania
+    SET widoczne = false
+    WHERE dataZakonczenia <'" . $data4."'";
+if ($conn->query($usuwanie4) === TRUE) {
+  echo '';
+} else {
+  echo "";
+}
 $conn->close();
-?>
+

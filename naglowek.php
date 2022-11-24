@@ -1,4 +1,3 @@
-
 <?php
     $strona = $_SERVER['PHP_SELF'];
     require_once('funkcje/bazadanych.php');
