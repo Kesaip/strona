@@ -79,15 +79,13 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
   }
 ?>
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400
-      or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500
-      or isset($_SESSION['zalogowany']) && ['zalogowany'] == 40) {
-    print('<a class="nav-item nav-link" href="pliki2.php">Pliki</a>');
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400) {
+    print('<a class="nav-item nav-link" href="dlaUczniow.php">Zadania</a>');
   }
 ?>
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
-    print('<a class="nav-item nav-link" href="plikiadm.php">Pliki Administrator</a>');
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 AND $_SESSION['zalogowany'] < 500) {
+    print('<a class="nav-item nav-link" href="odNauczycieli.php">Zadania</a>');
   }
 ?>
     <a class="nav-item nav-link"

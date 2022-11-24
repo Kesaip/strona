@@ -73,16 +73,6 @@ if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
     print('</div>');
   }
 ?>
-<?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2) {
-    print('<a class="nav-item nav-link" href="pliki2.php">Pliki</a>');
-  }
-?>
-<?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
-    print('<a class="nav-item nav-link" href="plikiadm.php">Pliki Administrator</a>');
-  }
-?>
     <a class="nav-item nav-link"
         href="kontakt.php"
         <?php
@@ -91,7 +81,7 @@ if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
             }
         ?>        
         >Kontakt
-    </a>		
+    </a>
 		</div>
         <?php
      

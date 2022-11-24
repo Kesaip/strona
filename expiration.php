@@ -36,7 +36,6 @@ if ($conn->query($usuwanie3) === TRUE) {
   echo "";
 }
 $data4 = date("Y-m-d G:i:s");
-print($data4);
 $usuwanie4 =
     "UPDATE zadania
     SET widoczne = false

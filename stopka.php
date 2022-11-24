@@ -4,13 +4,13 @@
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.5);">
     © 2022 Copyright:
     <a class="text-white" href="/">ZSET.pl</a>
+      <?php
+      require_once('expiration.php');
+      ini_set( 'display_errors', 'On' );
+      error_reporting( E_ALL );
+      ?>
   </div>
 </footer>
 <div id="debug">
     <p type="hidden">
-    <?php
-        require_once('expiration.php');
-        ini_set( 'display_errors', 'On' ); 
-        error_reporting( E_ALL );
-    ?>
 </div>
