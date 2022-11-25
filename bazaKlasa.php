@@ -1,12 +1,11 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
+require_once('role.php');
+if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != ROLA_PRACOWNIK) {
     header("location: /");
 }
 ini_set( 'display_errors', 'On' );
 error_reporting( E_ALL );
-require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 $log =
     "SELECT klasa 

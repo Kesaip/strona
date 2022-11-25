@@ -2,7 +2,8 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-  if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
+require_once('role.php');
+  if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != ROLA_PRACOWNIK) {
     header("location: /");
   }
     $strona = $_SERVER['PHP_SELF'];
@@ -60,7 +61,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
     </a>
 
 <?php
-if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
+if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
     print('<div class="dropdown show">');
     print('<a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrator</a>');
     print('<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">');
@@ -85,7 +86,7 @@ if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
 		</div>
         <?php
      
-     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2) {
+     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
          print('
          <div class="navbar-nav ml-auto action-buttons">
 			<div class="nav-item dropdown" style="padding: 5px;">

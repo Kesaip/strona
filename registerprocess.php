@@ -2,6 +2,7 @@
 ini_set( 'display_errors', 'On' );
 error_reporting( E_ALL );
 $data=date("Y-m-d");
+require_once('role.php');
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 $Zapytanie3 =
@@ -73,7 +74,7 @@ $password = $_POST['haslo'];
           $result = mysqli_query($conn, $Zapytanie2);
           $row = mysqli_fetch_assoc($result);
           $_SESSION['Id'] = $row['OsobaId'];
-          $_SESSION['zalogowany'] = 2;
+          $_SESSION['zalogowany'] = ROLA_OSOBA;
           $_SESSION['time']     = time()+600;
       if ($conn->query($Zapytanie) === TRUE) {
           echo "New record created successfully";

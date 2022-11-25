@@ -3,7 +3,8 @@
 session_start();
 ini_set( 'display_errors', 'On' );
 error_reporting( E_ALL );
-if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1 AND ($_SESSION['zalogowany'] < 300 or $_SESSION['zalogowany'] > 400)) {
+require_once('role.php');
+if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != ROLA_PRACOWNIK AND ($_SESSION['zalogowany'] != ROLA_UCZEN)) {
   header("location: /?nie=1");
 }
 require_once('funkcje/bazadanych.php');
@@ -34,7 +35,8 @@ $Zapytanie2 =
     AND klasaId ='".$row["klasa"]."'
     AND przedmiotId ='".$row["przedmiot"]."'
     AND przydzial.klasa1 ='".$row["klasa"]."'
-    AND przydzial.uczen = uczniowie.uczenId";
+    AND przydzial.uczen ='".$_SESSION['Id']."'
+    AND uczniowie.uczenId ='".$_SESSION['Id']."'";
 $result2 = mysqli_query($conn,$Zapytanie2);
 $row2 = mysqli_fetch_assoc($result2);
 $target_dir = "/Users/oskar/Desktop/stronyglowne/uploads/".$row2["Imie"]."_".$row2["Nazwisko"]."/".$row2["klasa"]."/".$row2["przedmiot"]."/".$row["nazwa"]."/";//"/var/www/domex/uploads/";

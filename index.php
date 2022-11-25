@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('role.php');
 require_once('funkcje/bazadanych.php');
 require_once('funkcje/link.php');
 require_once ('funkcje/imiona.php');
@@ -42,13 +43,13 @@ if (isset($_SESSION['Id'])) {
         WHERE nauczycielId = '". $_SESSION['Id'] . "'";
     $result4 = mysqli_query($conn, $Zapytanie4);
     $row4 = mysqli_fetch_assoc($result4);
-    if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
+    if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
         $imie = $row['Imie'];
-    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2) {
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_OSOBA) {
         $imie = $row2['Imie'];
-    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400){
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_UCZEN){
         $imie = $row3['Imie'];
-    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 40){
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL){
         $imie = $row4['Imie'];
     }
 }

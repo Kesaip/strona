@@ -38,7 +38,8 @@ $Zapytanie2 =
         przedmioty
     WHERE nauczycielId ='".$nauczyciel."'
     AND klasaId ='".$klasa."'
-    AND przedmiotId ='".$przedmiot."'";
+    AND przedmiotId ='".$przedmiot."'
+    AND uczenId ='".$_SESSION['Id']."'";
 $result2 = mysqli_query($conn,$Zapytanie2);
 $row2 = mysqli_fetch_assoc($result2);
 ?>
@@ -74,7 +75,7 @@ $row2 = mysqli_fetch_assoc($result2);
     foreach ($files as $file) {
         // var_dump($file);
         if (!in_array($file, $blacklist)) {
-            if (str_contains($file, $row2["Email2"])){
+            if (str_contains($file, $row2["Email2"]) or str_contains($file, $row2["Email"])){
             $helena++;
             echo '<tr><td>'.$helena.'</td><td>'.$file.'</td>
         <td>

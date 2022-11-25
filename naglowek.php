@@ -1,6 +1,6 @@
 <?php
     $strona = $_SERVER['PHP_SELF'];
-    require_once('funkcje/bazadanych.php');
+    require_once('role.php');
     $conn = polaczenieBaza();
     if (isset($_SESSION['Id'])) {
         $Zapytanie =
@@ -65,7 +65,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
     </a>
 
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
       print('<div class="dropdown show">');
       print('<a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrator</a>');
       print('<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">');
@@ -79,12 +79,12 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
   }
 ?>
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400) {
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_UCZEN) {
     print('<a class="nav-item nav-link" href="dlaUczniow.php">Zadania</a>');
   }
 ?>
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 AND $_SESSION['zalogowany'] < 500) {
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL) {
     print('<a class="nav-item nav-link" href="odNauczycieli.php">Zadania</a>');
   }
 ?>
@@ -97,7 +97,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
         ?>
         >Kontakt
     </a>
-      <?php if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 AND $_SESSION['zalogowany'] < 500) {
+      <?php if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL AND $_SESSION['zalogowany'] != 400) {
           echo '<a class="nav-item nav-link"';
           print("href='klasa.php?klasa=" . $row["klasaId"] . "'");
           if ($strona == "klasa.php") {
@@ -109,11 +109,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 		</div>
         <?php
      
-     if (isset($_SESSION['zalogowany'])/* && $_SESSION['zalogowany'] == 1
-         or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2
-         or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500
-         or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 40
-         or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400*/) {
+     if (isset($_SESSION['zalogowany'])) {
          print('
          <div class="navbar-nav ml-auto action-buttons">
 			<div class="nav-item dropdown" style="padding: 5px;">

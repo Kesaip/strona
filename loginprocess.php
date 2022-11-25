@@ -33,11 +33,12 @@ if ($row == null) {
     $result = mysqli_query($conn, $Zapytanie);
     $row = mysqli_fetch_assoc($result);
     $Zapytanie2 =
-        "SELECT klasaId
-        FROM klasy";
+        "SELECT klasa1
+        FROM przydzial
+        WHERE uczen ='".$row["uczenId"]."'";
     $result2 = mysqli_query($conn, $Zapytanie2);
     $row2 = mysqli_fetch_assoc($result2);
-    $klasa = $row2['klasaId'];
+    $klasa = $row2['klasa1'];
     if ($row == null) {
         $_SESSION['zalogowany'] = 0;
         $Zapytanie =
@@ -84,22 +85,26 @@ if ($row == null) {
 
         }else{
             $_SESSION['Id'] = $row['nauczycielId'];
-            $_SESSION['zalogowany'] = ROLA_NAUCZYCIEL . $klasa;
+            if ($klasa != null) {
+                $_SESSION['zalogowany'] = ROLA_NAUCZYCIEL . $klasa;
+            }else {
+                $_SESSION['zalogowany'] = ROLA_NAUCZYCIEL . 0;
+            }
             $_SESSION['time'] = time() + 600;
-            header("Location: pracownicy.php?udanie");
+            header("Location: /?udanie");
             exit;
         }
     } else {
         $_SESSION['Id'] = $row['uczenId'];
         $_SESSION['zalogowany'] = ROLA_UCZEN . $klasa;
         $_SESSION['time'] = time() + 600;
-        header("Location: ".$_SERVER['HTTP_REFERER'].'?udanie');
+        header("Location: /?udanie");
         exit;
     }
 }else {
     $_SESSION['Id'] = $row['OsobaId'];
     $_SESSION['zalogowany'] = ROLA_OSOBA;
     $_SESSION['time']     = time()+600;
-    header("Location: ".$_SERVER['HTTP_REFERER'].'?udanie');
+    header("Location: /?udanie");
 }
 ?>

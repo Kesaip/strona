@@ -3,8 +3,8 @@
     session_start();
     ini_set( 'display_errors', 'On' );
     error_reporting( E_ALL );
-
-if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1 AND ($_SESSION['zalogowany'] < 400 or $_SESSION['zalogowany'] > 500) AND $_SESSION['zalogowany'] != 40) {
+require_once('role.php');
+if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != ROLA_PRACOWNIK AND ($_SESSION['zalogowany'] != ROLA_NAUCZYCIEL)) {
       header("location: /?nie=1");
 }
 require_once('funkcje/bazadanych.php');

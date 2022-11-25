@@ -2,6 +2,7 @@
 session_start();
 ini_set( 'display_errors', 'On' );
 error_reporting( E_ALL );
+require_once('role.php');
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 $Zapytanie =
@@ -15,7 +16,7 @@ $przedmiot = $row["przedmiot"];
 $nauczyciel = $row["nauczyciel"];
 $nazwa = $row["nazwa"];
 $opis = $row["opis"];
-if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1 AND ($_SESSION['zalogowany'] < 400 or $_SESSION['zalogowany'] > 500) AND ($_SESSION['zalogowany'] != 40)) {
+if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != ROLA_PRACOWNIK AND ($_SESSION['zalogowany'] != ROLA_NAUCZYCIEL)) {
     header("location: /?nie=1");
 }
 require_once('naglowek.php');
@@ -38,14 +39,14 @@ $result2 = mysqli_query($conn,$Zapytanie2);
 $row2 = mysqli_fetch_assoc($result2);
 ?>
 <center>
-    <?php if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany'] > 400 AND $_SESSION['zalogowany'] < 500 OR $_SESSION['zalogowany'] == 40 AND $_SESSION['Id'] == $nauczyciel){ ?>
+    <?php if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany']  == ROLA_NAUCZYCIEL AND $_SESSION['Id'] == $nauczyciel){ ?>
     <form action="uploadadm.php" method="post" enctype="multipart/form-data">
         <label for="formFileMultiple" class="form-label">Wrzutka</label>
         <input class="form-control form-control-lg" name="fileToUpload" type="file" id="fileToUpload"/>
         <input type="submit" class="btn btn-primary" style="margin: 10px" value="Udostępnij" name="submit">
         <input type="hidden" name="zadanie" value="<?php print($_GET['zadanie']) ?>" />
     </form>
-    <?php } die;?>
+    <?php }?>
     <p style="padding: 5px"><h1><?php echo $nazwa ?></h1></p>
     <p style="padding: 5px"><h3><?php echo $opis ?></h3></p>
 </center>
@@ -55,7 +56,7 @@ $row2 = mysqli_fetch_assoc($result2);
         <th scope="col">#</th>
         <th scope="col">Nazwa</th>
         <th scope="col">Plik</th>
-        <?php if ($_SESSION['Id'] == $nauczyciel AND (($_SESSION['zalogowany'] > 400 AND $_SESSION['zalogowany'] < 500) OR $_SESSION['zalogowany'] == 40)) { ?>
+        <?php if ($_SESSION['Id'] == $nauczyciel AND ($_SESSION['zalogowany'] == ROLA_NAUCZYCIEL)) { ?>
             <th scope="col">Usuń</th>
         <?php } ?>
     </tr>

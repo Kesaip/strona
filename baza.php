@@ -1,7 +1,8 @@
 <?php 
 session_start();
-
-if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
+require_once('role.php');
+$conn = polaczenieBaza();
+if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != ROLA_PRACOWNIK) {
 header("location: /");
 }
 
@@ -10,8 +11,6 @@ error_reporting( E_ALL );
 
 $data=date("Y-m-d");
 
-require_once('funkcje/bazadanych.php');
-$conn = polaczenieBaza();
 $log =
     "SELECT Login 
     FROM Pracownicy 

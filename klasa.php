@@ -1,9 +1,8 @@
 <?php
 session_start();
+require_once('role.php');
 if (isset($_SESSION['zalogowany'])
-    AND $_SESSION['zalogowany']>400
-    AND $_SESSION['zalogowany']<500
-    AND $_SESSION['zalogowany']==40 . $_GET["klasa"]){
+    AND $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL){
     require_once('naglowek.php');
 }else {
     require_once('naglowekpracownicy.php');
@@ -38,7 +37,7 @@ $row2 = mysqli_fetch_assoc($result2)
         link1($_GET);
         echo"<h1 style='color: rgb(0, 174, 255)' class='cien'>Klasa ".$row2["klasa"]."</h1>";
         echo"<h3 style='color: rgb(0, 174, 255)'>Wychowawca: ".$row2["Imie2"]."".$row2["Nazwisko2"]."</h3>";
-        if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany'] == 1) {
+        if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
         echo'<br>';
         echo'<a href="dodajUcznia.php"><i class="fa fa-user-plus fa-3x" style="padding: 5px;color: rgb(0,200,0)"></i></a>';
         }
@@ -51,7 +50,7 @@ $row2 = mysqli_fetch_assoc($result2)
                 <th scope="col">Nazwisko</th>
                 <th scope="col">Email</th>
                 <?php
-                if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany'] == 1) {
+                if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
                 echo'<th scope="col">Edycja</th>';
                 echo'<th scope="col">Usuwanie</th>';
                 }
@@ -67,7 +66,7 @@ $row2 = mysqli_fetch_assoc($result2)
                     echo"<td>" . $row["Imie"]. "</td>";
                     echo"<td>" . $row["Nazwisko"]. "</td>";
                     echo"<td><a href='uczen.php?uczen=" . $row["uczenId"] ."'>" . $row["Email"] . "</a></td>";
-                    if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany'] == 1) {
+                    if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
                         echo "<td> <a href='edytujUcznia.php?id=" . $row["uczenId"] . "'><i class='fa fa-pencil-square-o fa-2x' style='padding-right: 5px' aria-hidden='true'></i></a></td>";
                         echo "<td><a href='usunUcznia.php?id=" . $row["uczenId"] . "'><i class='fa fa-trash fa-2x' style='padding-left: 5px;color: rgb(255,30,30)' aria-hidden='true'></i></a></td></tr>";
                     }

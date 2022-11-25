@@ -19,7 +19,6 @@ $Zapytanie =  "
     WHERE zadania.nauczyciel ='" .$_GET["nauczyciel"]."'
     AND zadania.klasa ='" .$_GET["klasa"]."'
     AND zadania.przedmiot ='" .$_GET["przedmiot"]."'
-    AND zadania.nauczyciel ='" .$_SESSION["Id"]."'
     AND zadania.widoczne = TRUE";
 ?>
 <div id="tresc_pracownicy">

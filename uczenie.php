@@ -1,9 +1,8 @@
 <?php
 session_start();
+require_once('role.php');
 if (isset($_SESSION['zalogowany'])
-    AND $_SESSION['zalogowany']>400
-    AND $_SESSION['zalogowany']<500
-    OR $_SESSION['zalogowany']==40){
+    AND $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL){
     require_once('naglowek.php');
 }else {
     require_once('naglowekpracownicy.php');

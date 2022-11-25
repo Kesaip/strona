@@ -1,6 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
+require_once('role.php');
+if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != ROLA_PRACOWNIK) {
     header("location: /");
 }
 require_once('funkcje/bazadanych.php');

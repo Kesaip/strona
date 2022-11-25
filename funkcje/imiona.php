@@ -3,8 +3,10 @@ function imie($imie){
     $ostatnia = mb_substr($imie, -1);
     if ($imie == 'Ania') {
         return 'Anno';
+    }elseif ($imie == 'Magdalena'){
+        return "Magdaleno";
     }elseif ($ostatnia == 'a'){
-        return str_replace("a", "o", $imie);
+        return str_replace($ostatnia, "o", $imie);
     }
     elseif ($imie == 'Kacper'){
         return 'Kacprze';
