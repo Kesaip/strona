@@ -36,7 +36,7 @@ $row2 = mysqli_fetch_assoc($result2)
         <?php
         link1($_GET);
         echo"<h1 style='color: rgb(0, 174, 255)' class='cien'>Klasa ".$row2["klasa"]."</h1>";
-        echo"<h3 style='color: rgb(0, 174, 255)'>Wychowawca: ".$row2["Imie2"]."".$row2["Nazwisko2"]."</h3>";
+        echo"<h3 style='color: rgb(0, 174, 255)'>Wychowawca: ".$row2["Imie2"]." ".$row2["Nazwisko2"]."</h3>";
         if (isset($_SESSION['zalogowany']) AND $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
         echo'<br>';
         echo'<a href="dodajUcznia.php"><i class="fa fa-user-plus fa-3x" style="padding: 5px;color: rgb(0,200,0)"></i></a>';

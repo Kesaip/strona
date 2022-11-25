@@ -63,10 +63,10 @@ require_once('naglowek.php');
     ?>
     <br>
     <p><p style="font-size:50px;" class="cien" style="centre">Witaj w ZSET</p>
-    <p style="font-size:50px;" class="cien" style="centre"><?php if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']==1) {print (imie($imie));}
-        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']==2) {print (imie($imie));}
-        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400){print (imie($imie));}
-        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 40){print (imie($imie));}?></p>
+    <p style="font-size:50px;" class="cien" style="centre"><?php if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']==ROLA_PRACOWNIK) {print (imie($imie));}
+        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']==ROLA_OSOBA) {print (imie($imie));}
+        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_UCZEN){print (imie($imie));}
+        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL){print (imie($imie));}?></p>
     <div id="demo" class="carousel slide" data-ride="carousel">
         <ul class="carousel-indicators">
             <li data-target="#demo" data-slide-to="0" class="active"></li>
