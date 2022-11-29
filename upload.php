@@ -1,57 +1,60 @@
 
 <?php
-  session_start();
-  ini_set( 'display_errors', 'On' ); 
+session_start();
+ini_set( 'display_errors', 'On' );
 error_reporting( E_ALL );
-
-if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1 AND ($_SESSION['zalogowany'] < 300 or $_SESSION['zalogowany'] > 500) AND $_SESSION['zalogowany'] != 40) {
-      header("location: /?nie=1");
-  }
-$target_dir = "/Users/oskar/Desktop/stronyglowne/uploads/";//"/var/www/domex/uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+require_once('role.php');
+if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != ROLA_PRACOWNIK AND ($_SESSION['zalogowany'] != ROLA_UCZEN)) {
+  header("location: /?nie=1");
+}
+require_once('funkcje/bazadanych.php');
+$conn = polaczenieBaza();
+$Zapytanie =
+    "SELECT *
+    FROM zadania
+    WHERE id ='".$_POST["zadanie"]."'";
+$result = mysqli_query($conn,$Zapytanie);
+$row = mysqli_fetch_assoc($result);
+if ($_SESSION['zalogowany'] != 30 .$row["klasa"]){
+  header("location:/?nie");
+}
+$Zapytanie2 =
+    "SELECT 
+        uczniowie.Email,
+        nauczyciele.Imie,
+        nauczyciele.Nazwisko,
+        klasa,
+        przedmiot
+    FROM
+        nauczyciele,
+        klasy,
+        przedmioty,
+        uczniowie,
+        przydzial
+    WHERE nauczycielId ='".$row["nauczyciel"]."'
+    AND klasaId ='".$row["klasa"]."'
+    AND przedmiotId ='".$row["przedmiot"]."'
+    AND przydzial.klasa1 ='".$row["klasa"]."'
+    AND przydzial.uczen ='".$_SESSION['Id']."'
+    AND uczniowie.uczenId ='".$_SESSION['Id']."'";
+$result2 = mysqli_query($conn,$Zapytanie2);
+$row2 = mysqli_fetch_assoc($result2);
+$target_dir = "/Users/oskar/Desktop/stronyglowne/uploads/".$row2["Imie"]."_".$row2["Nazwisko"]."/".$row2["klasa"]."/".$row2["przedmiot"]."/".$row["nazwa"]."/";//"/var/www/domex/uploads/";
+$plik = $row2["Email"]."_".$_FILES["fileToUpload"]["name"];
+$target_file = $target_dir . basename($plik);
 $uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-  if($check !== false) {
-    echo "File is an image - " . $check["mime"] . ".";
-    $uploadOk = 1;
-  } else {
-    header("location: pliki2.php?obraz=1");
-    $uploadOk = 0;
-  }
-}
-
 if (file_exists($target_file)) {
-  header("location: pliki2.php?istnieje=1");
-  $uploadOk = 0;
-} 
-
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-    header("location: pliki2.php?duzy=1");
+  header("location: zadanieUczen.php?zadanie=".$_POST["zadanie"]."&istnieje=1");
   $uploadOk = 0;
 }
-
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-    header("location: pliki2.php?nieto=1");
-  $uploadOk = 0;
-}
-
-// Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-  echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
+  echo "nie udało się";
 } else {
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-    header("location: pliki2.php?udane=1");
+    echo "The file ". htmlspecialchars( basename( $plik)). " has been uploaded.";
+    header("location: zadanieUczen.php?zadanie=".$_POST["zadanie"]."&udane=1");
   } else {
-    header("location: pliki2.php");
+    header("location: zadanieUczen.php?zadanie=".$_POST["zadanie"]);
     print_r($_FILES);
   }
 }

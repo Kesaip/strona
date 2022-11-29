@@ -8,17 +8,29 @@ error_reporting( E_ALL );
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
 $data=date("Y-m-d");
-$duzo = "SELECT Email FROM loginy WHERE Email = '".$_POST['email']."'";
+$duzo =
+    "SELECT Email 
+    FROM loginy 
+    WHERE Email = '".$_POST['email']."'";
 $konta = mysqli_query($conn, $duzo);
 if (mysqli_num_rows($konta) > 3){
     header("location: /?duzo=2");
     die;
 }
-$log = "SELECT Email FROM Uzytkownicy WHERE Email = '".$_POST['email']."'";
+$log =
+    "SELECT Email 
+    FROM Uzytkownicy 
+    WHERE Email = '".$_POST['email']."'";
 $login = mysqli_query($conn, $log);
-$log2 = "SELECT Email FROM uczniowie WHERE Email = '".$_POST['email']."'";
+$log2 =
+    "SELECT Email 
+    FROM uczniowie 
+    WHERE Email = '".$_POST['email']."'";
 $login2 = mysqli_query($conn, $log2);
-$log3 = "SELECT Email FROM nauczyciele WHERE Email = '".$_POST['email']."'";
+$log3 =
+    "SELECT Email 
+    FROM nauczyciele 
+    WHERE Email = '".$_POST['email']."'";
 $login3 = mysqli_query($conn, $log3);
 $Login = str_replace(" ",'',$_POST['email']);
 $hash = md5( rand(0,1000) );
@@ -30,7 +42,9 @@ if (mysqli_num_rows($login) != 0 or mysqli_num_rows($login2) != 0 or mysqli_num_
 } else {
   
 $password = rand(1000,99999999);
-          $Zapytanie =  "INSERT INTO loginy (Email,Haslo,DataDolaczenia,hash) VALUES ('".$Login."','".$password."','".$data."','".$hash."')";
+          $Zapytanie =
+              "INSERT INTO loginy (Email,Haslo,DataDolaczenia,hash) 
+              VALUES ('".$Login."','".$password."','".$data."','".$hash."')";
 
           require_once('phpmailer/PHPMailerAutoload.php'); # patch where is PHPMailer / ścieżka do PHPMailera
 

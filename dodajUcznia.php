@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Oskar Piasecki - Uczniowie</title>
+    <title>ZSET - Uczniowie</title>
     <script>
         var check = function() {
             if (document.getElementById('haslo').value ==
@@ -42,8 +42,9 @@ require_once('funkcje/link.php');
             $helena = 0;
             require_once('funkcje/bazadanych.php');
             $conn = polaczenieBaza();
-            $Zapytanie =  "SELECT klasa
-            FROM klasy";
+            $Zapytanie =
+                "SELECT klasa
+                FROM klasy";
             $result = mysqli_query($conn, $Zapytanie);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {

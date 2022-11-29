@@ -1,8 +1,21 @@
 <?php
 require_once('funkcje/bazadanych.php');
 $conn = polaczenieBaza();
-$Zapytanie =  "SELECT Nazwisko,Imie,Email,uczenId,Haslo
-  FROM uczniowie WHERE uczenId=".$_GET['id'];
+$Zapytanie3 =
+    "SELECT klasa1
+    FROM przydzial
+    WHERE uczen =".$_GET['id'];
+$result3 = mysqli_query($conn,$Zapytanie3);
+$row3 = mysqli_fetch_assoc($result3);
+$Zapytanie =
+    "SELECT 
+        Nazwisko,
+        Imie,
+        Email,
+        uczenId,
+        Haslo
+    FROM uczniowie 
+    WHERE uczenId=".$_GET['id'];
 $result = mysqli_query($conn, $Zapytanie);
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
@@ -19,7 +32,7 @@ if ($result->num_rows > 0) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Oskar Piasecki - Uczniowie</title>
+    <title>ZSET - Uczniowie</title>
     <script>
         var check = function() {
             if (document.getElementById('haslo').value ==
@@ -57,14 +70,16 @@ require_once('naglowekpracownicy.php');
             <label for="klasa">Klasa:</label>
             <br>
             <select id="klasa" name="klasa">
-                <option selected disabled hidden>Wybierz klase</option>
                 <?php
-                $Zapytanie2 =  "SELECT klasa
-            FROM klasy";
+                $Zapytanie2 =
+                    "SELECT klasa,klasaId
+                    FROM klasy";
                 $result2 = mysqli_query($conn, $Zapytanie2);
                 if ($result2->num_rows > 0) {
                     while($row2 = $result2->fetch_assoc()) {
-                        echo "<option>" . $row2["klasa"] . "</option>";
+                        echo"<option ";
+                        if ($row2["klasaId"] == $row3["klasa1"]){echo"selected";}
+                        echo">" . $row2["klasa"] . "</option>";
                     }
                 }else{
                     echo "0 results";

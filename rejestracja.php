@@ -4,7 +4,10 @@ $conn = polaczenieBaza();
 if (isset($_GET["zledane"])) {
     print("<span style='color: red'>Niepoprawne dane</span><br />");
    }
-$email = "SELECT Email FROM loginy WHERE hash ='" .$_GET['hash']."'";
+$email =
+    "SELECT Email 
+    FROM loginy 
+    WHERE hash ='" .$_GET['hash']."'";
 $result = mysqli_query($conn, $email);
 $row = mysqli_fetch_assoc($result);
 $Email = $row['Email'];

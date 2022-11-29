@@ -1,37 +1,55 @@
 <?php
-
 session_start();
+require_once('role.php');
 require_once('funkcje/bazadanych.php');
 require_once('funkcje/link.php');
 require_once ('funkcje/imiona.php');
 $conn = polaczenieBaza();
 if (isset($_SESSION['Id'])) {
-    $Zapytanie = "SELECT Nazwisko,Imie,PracownikId
-  FROM Pracownicy
-  WHERE PracownikId = '" . $_SESSION['Id'] . "'";
+    $Zapytanie =
+        "SELECT 
+            Nazwisko,
+            Imie,
+            PracownikId
+        FROM Pracownicy
+        WHERE PracownikId = '" . $_SESSION['Id'] . "'";
 
     $result = mysqli_query($conn, $Zapytanie);
     $row = mysqli_fetch_assoc($result);
-    $Zapytanie2 = "SELECT Nazwisko,Imie,OsobaId
-    FROM Uzytkownicy
-    WHERE OsobaId = '" . $_SESSION['Id'] . "'";
+    $Zapytanie2 =
+        "SELECT 
+            Nazwisko,
+            Imie,
+            OsobaId
+        FROM Uzytkownicy
+        WHERE OsobaId = '" . $_SESSION['Id'] . "'";
     $result2 = mysqli_query($conn, $Zapytanie2);
     $row2 = mysqli_fetch_assoc($result2);
-    $Zapytanie3 = "SELECT Nazwisko,Imie,uczenId
-        FROM uczniowie WHERE uczenId = '". $_SESSION['Id'] . "'";
+    $Zapytanie3 =
+        "SELECT 
+            Nazwisko,
+            Imie,
+            uczenId
+        FROM uczniowie 
+        WHERE uczenId = '". $_SESSION['Id'] . "'";
     $result3 = mysqli_query($conn, $Zapytanie3);
     $row3 = mysqli_fetch_assoc($result3);
-    $Zapytanie4 = "SELECT nazwisko,Imie,nauczycielId
-        FROM nauczyciele WHERE nauczycielId = '". $_SESSION['Id'] . "'";
+    $Zapytanie4 =
+        "SELECT 
+            nazwisko,
+            Imie,
+            nauczycielId
+        FROM nauczyciele 
+        WHERE nauczycielId = '". $_SESSION['Id'] . "'";
     $result4 = mysqli_query($conn, $Zapytanie4);
     $row4 = mysqli_fetch_assoc($result4);
-    if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
+    if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
         $imie = $row['Imie'];
-    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2) {
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_OSOBA) {
         $imie = $row2['Imie'];
-    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400){
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_UCZEN){
         $imie = $row3['Imie'];
-    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 40){
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL){
         $imie = $row4['Imie'];
     }
 }
@@ -45,10 +63,10 @@ require_once('naglowek.php');
     ?>
     <br>
     <p><p style="font-size:50px;" class="cien" style="centre">Witaj w ZSET</p>
-    <p style="font-size:50px;" class="cien" style="centre"><?php if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']==1) {print (imie($imie));}
-        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']==2) {print (imie($imie));}
-        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400){print (imie($imie));}
-        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 40){print (imie($imie));}?></p>
+    <p style="font-size:50px;" class="cien" style="centre"><?php if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']==ROLA_PRACOWNIK) {print (imie($imie));}
+        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']==ROLA_OSOBA) {print (imie($imie));}
+        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_UCZEN){print (imie($imie));}
+        elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL){print (imie($imie));}?></p>
     <div id="demo" class="carousel slide" data-ride="carousel">
         <ul class="carousel-indicators">
             <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -70,7 +88,6 @@ require_once('naglowek.php');
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 </div>

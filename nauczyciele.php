@@ -24,16 +24,27 @@ require_once('funkcje/link.php');
             $helena = 0;
             require_once('funkcje/bazadanych.php');
             $conn = polaczenieBaza();
-            $Zapytanie =  "SELECT nauczyciele.Imie,nauczyciele.Nazwisko,nauczyciele.Email,nauczyciele.nauczycielId,klasy.wychowawca
-            FROM nauczyciele
-            LEFT JOIN klasy ON nauczyciele.nauczycielId = klasy.wychowawca";
+            $Zapytanie =
+                "SELECT 
+                    nauczyciele.Imie,
+                    nauczyciele.Nazwisko,
+                    nauczyciele.Email,
+                    nauczyciele.nauczycielId,
+                    klasy.wychowawca
+                FROM nauczyciele
+                LEFT JOIN klasy ON nauczyciele.nauczycielId = klasy.wychowawca
+                ORDER BY nauczyciele.Nazwisko";
             $result = mysqli_query($conn, $Zapytanie);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     $helena++;
-                    echo "<tr><td>".$helena."</td><td>" . $row["Imie"]. "</td><td>" . $row["Nazwisko"] . "</td><td><a href='nauczyciel.php?" . $row["nauczycielId"] ."'>" . $row["Email"] . "</a></td><td><input type='checkbox' disabled ";
+                    echo"<tr><td>".$helena."</td><td>" . $row["Imie"]. "</td>";
+                    echo"<td>" . $row["Nazwisko"] . "</td>";
+                    echo"<td><a href='profil.php?nauczyciel=" . $row["nauczycielId"] ."'>" . $row["Email"] . "</a></td><td><input type='checkbox' disabled ";
                     if ($row['wychowawca']==$row['nauczycielId']){print('checked');}
-                    echo" ></td><td> <a href='edytujNauczyciela.php?id=".$row["nauczycielId"]."'><i class='fa fa-pencil-square-o fa-2x' style='padding-right: 5px' aria-hidden='true'></i></a></td><td><a href='usunNauczyciela.php?id=".$row["nauczycielId"]."'><i class='fa fa-trash fa-2x' style='padding-left: 5px;color: rgb(255,30,30)' aria-hidden='true'></i></a></td></tr>";
+                    echo"></td>";
+                    echo"<td><a href='edytujNauczyciela.php?id=".$row["nauczycielId"]."'><i class='fa fa-pencil-square-o fa-2x' style='padding-right: 5px' aria-hidden='true'></i></a></td>";
+                    echo"<td><a href='usunNauczyciela.php?id=".$row["nauczycielId"]."'><i class='fa fa-trash fa-2x' style='padding-left: 5px;color: rgb(255,30,30)' aria-hidden='true'></i></a></td></tr>";
                 }
             } else {
                 echo "0 results";

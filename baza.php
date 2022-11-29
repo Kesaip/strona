@@ -1,7 +1,8 @@
 <?php 
 session_start();
-
-if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
+require_once('role.php');
+$conn = polaczenieBaza();
+if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != ROLA_PRACOWNIK) {
 header("location: /");
 }
 
@@ -10,9 +11,10 @@ error_reporting( E_ALL );
 
 $data=date("Y-m-d");
 
-require_once('funkcje/bazadanych.php');
-$conn = polaczenieBaza();
-$log = "SELECT Login FROM Pracownicy WHERE Login = '".$_POST['login']."'";
+$log =
+    "SELECT Login 
+    FROM Pracownicy 
+    WHERE Login = '".$_POST['login']."'";
 $login = mysqli_query($conn, $log);
 if (mysqli_num_rows($login) != 0) {
   header("location: dodaj.php?zajety=2");
@@ -33,7 +35,9 @@ if (mysqli_num_rows($login) != 0) {
         header("location: dodaj.php?zlylogin=1");
       } else {
       if ($_POST["haslo"] == $_POST["haslo2"]) {
-          $Zapytanie =  "INSERT INTO Pracownicy (Imie,Nazwisko,Login,Haslo,RozpoczeciePracy) VALUES ('".$Imie."','".$_POST["Nazwisko"]."','".$Login."','".$_POST["haslo"]."','".$data."')";
+          $Zapytanie =
+              "INSERT INTO Pracownicy (Imie,Nazwisko,Login,Haslo,RozpoczeciePracy) 
+              VALUES ('".$Imie."','".$_POST["Nazwisko"]."','".$Login."','".$_POST["haslo"]."','".$data."')";
 
 
       if ($conn->query($Zapytanie) === TRUE) {

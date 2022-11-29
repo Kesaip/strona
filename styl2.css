@@ -104,7 +104,7 @@ body {
 }	
 .navbar .btn-primary:hover, .navbar .btn-primary:focus {		
 	color: #fff;
-	background: rgb(0, 174, 255) !important;
+	background: rgb(0, 140, 255) !important;
 }
 .navbar .social-btn .btn, .navbar .social-btn .btn:hover {
 	color: #fff;
@@ -191,24 +191,74 @@ body {
     background-size: 100%;
 }
 #tresc3 {
-	text-shadow: 2px 2px 5px red;
+	text-shadow: 2px 2px 5px rgb(22, 22, 22);
 	background-image: url(obrazy/szareTlo.png);
-	background-size: 1700px;
-	background-color: rgb(110, 0, 235);
+	background-size: 100%;
+	background-color: rgb(0, 0, 0);
 	text-align: center;
 	color: rgb(0, 174, 255);
   }
 #tresc2 {
 	text-align: center;
-	text-shadow: 2px 2px 5px red;
-	color: rgb(0, 174, 255);
+	text-shadow: 2px 2px 5px rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
 	background-image: url(obrazy/szareTlo.png);
-  background-size: 2000px;
+  	background-size: 100%;
+}
+#tresc4 {
+	text-align: center;
+	text-shadow: 2px 2px 5px rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	background-image: url(obrazy/szareTlo.png);
+  	background-size: 100%;
+}
+#tresc5 {
+	text-align: center;
+	text-shadow: 2px 2px 5px rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	display: inline;
+}
+
+
+#tresc6 {
+	border: #0073ff;
+	text-align: left;
+	text-shadow: 2px 2px 5px rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	padding: 400px 500px;
+	display: inline;
+}
+#tresc7 {
+	text-align: left;
+	text-shadow: 2px 2px 5px rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	margin-left: 18%;
+
 }
 .active {
     color: red;
   }
-/* .onas {
+
+  .profil{
+	background-image: url(obrazy/szareTlo.png);
+	background-size: 100%;
+
+  }
+
+
+  .container{
+	background-image: url(obrazy/szareTlo.png);
+  	background-size: 100%;
+  }
+
+  .profil2{
+	background-color: rgb(0, 174, 255);
+	margin-left: 25%;
+	margin-right: 20%;
+
+  }
+
+  /* .onas {
 	width: 900px;
   } */
   /* .carousel-inner img {
@@ -221,6 +271,14 @@ body {
   .cien {
 	text-shadow: 2px 3px 4px rgb(0, 108, 158);
   }
+  .stopka{
+	text-align: center;
+	text-shadow: 2px 2px 5px rgb(0, 0, 0);
+    background-color: rgb(0, 174, 255);
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+
+}
 	/* .tabela{
 		margin-left: auto;
 		margin-right: auto;

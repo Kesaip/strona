@@ -1,8 +1,9 @@
-
 <?php
-  session_start();
-
-  if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != 1) {
+if (!isset($_SESSION)) {
+    session_start();
+}
+require_once('role.php');
+  if (!isset($_SESSION['zalogowany']) or $_SESSION['zalogowany'] != ROLA_PRACOWNIK) {
     header("location: /");
   }
     $strona = $_SERVER['PHP_SELF'];
@@ -60,25 +61,17 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
     </a>
 
 <?php
-if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
+if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
     print('<div class="dropdown show">');
     print('<a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrator</a>');
     print('<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">');
     print('<a class="nav-item nav-link dropdown-item" href="pracownicy.php">Pracownicy</a>');
     print('<a class="nav-item nav-link dropdown-item" href="nauczyciele.php">Nauczyciele</a>');
     print('<a class="nav-item nav-link dropdown-item" href="uczniowie.php">Uczniowie</a>');
+    print('<a class="nav-item nav-link dropdown-item" href="klasy.php">Klasy</a>');
+    print('<a class="nav-item nav-link dropdown-item" href="uczenie.php">Nauczanie</a>');
     print('</div>');
     print('</div>');
-  }
-?>
-<?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2) {
-    print('<a class="nav-item nav-link" href="pliki2.php">Pliki</a>');
-  }
-?>
-<?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
-    print('<a class="nav-item nav-link" href="plikiadm.php">Pliki Administrator</a>');
   }
 ?>
     <a class="nav-item nav-link"
@@ -89,14 +82,15 @@ if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
             }
         ?>        
         >Kontakt
-    </a>		
+    </a>
 		</div>
         <?php
      
-     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2) {
+     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
          print('
          <div class="navbar-nav ml-auto action-buttons">
 			<div class="nav-item dropdown" style="padding: 5px;">
+            <a href="profil.php?pracownik='.$_SESSION['Id'].'" class="btn btn-primary dropdown-toggle sign-up-btn">Mój Profil</a>
             <a href="logout.php"  class="btn btn-primary dropdown-toggle sign-up-btn">Wyloguj</a>
         </div>
         </div>');

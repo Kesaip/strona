@@ -1,6 +1,24 @@
-
 <?php
     $strona = $_SERVER['PHP_SELF'];
+    require_once('role.php');
+    $conn = polaczenieBaza();
+    if (isset($_SESSION['Id'])) {
+        $Zapytanie =
+            "SELECT klasaId
+    FROM klasy
+    WHERE wychowawca ='" . $_SESSION['Id'] . "'";
+        $result = mysqli_query($conn, $Zapytanie);
+        $row = mysqli_fetch_assoc($result);
+    }
+    if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_UCZEN){
+        $profil = "uczen=".$_SESSION['Id'];
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL){
+    $profil = "nauczyciel=".$_SESSION['Id'];
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_OSOBA){
+        $profil = "uzytkownik=".$_SESSION['Id'];
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_PRACOWNIK){
+        $profil = "pracownik=".$_SESSION['Id'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -56,25 +74,27 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
     </a>
 
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_PRACOWNIK) {
       print('<div class="dropdown show">');
       print('<a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrator</a>');
       print('<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">');
       print('<a class="nav-item nav-link dropdown-item" href="pracownicy.php">Pracownicy</a>');
       print('<a class="nav-item nav-link dropdown-item" href="nauczyciele.php">Nauczyciele</a>');
       print('<a class="nav-item nav-link dropdown-item" href="uczniowie.php">Uczniowie</a>');
+      print('<a class="nav-item nav-link dropdown-item" href="klasy.php">Klasy</a>');
+      print('<a class="nav-item nav-link dropdown-item" href="uczenie.php">Nauczanie</a>');
       print('</div>');
       print('</div>');
   }
 ?>
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500 or ($_SESSION['zalogowany'] == 40)) {
-    print('<a class="nav-item nav-link" href="pliki2.php">Pliki</a>');
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_UCZEN) {
+    print('<a class="nav-item nav-link" href="dlaUczniow.php">Zadania</a>');
   }
 ?>
 <?php
-  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1) {
-    print('<a class="nav-item nav-link" href="plikiadm.php">Pliki Administrator</a>');
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL) {
+    print('<a class="nav-item nav-link" href="odNauczycieli.php">Zadania</a>');
   }
 ?>
     <a class="nav-item nav-link"
@@ -83,16 +103,26 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
             if ($strona == "kontakt.php"){
                 print('class="active"');
             }
-        ?>        
+        ?>
         >Kontakt
-    </a>		
+    </a>
+      <?php if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL AND $_SESSION['zalogowany'] != 400) {
+          echo '<a class="nav-item nav-link"';
+          print("href='klasa.php?klasa=" . $row["klasaId"] . "'");
+          if ($strona == "klasa.php") {
+              print('class="active"');
+          }
+          echo ">Moja Klasa </a>";
+      }
+            ?>
 		</div>
         <?php
      
-     if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 1 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == 2 or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 400 && $_SESSION['zalogowany'] < 500 or ($_SESSION['zalogowany'] == 40) or isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] > 300 && $_SESSION['zalogowany'] < 400) {
+     if (isset($_SESSION['zalogowany'])) {
          print('
          <div class="navbar-nav ml-auto action-buttons">
 			<div class="nav-item dropdown" style="padding: 5px;">
+            <a href="profil.php?'. $profil .'" class="btn btn-primary dropdown-toggle sign-up-btn">Mój Profil</a>
             <a href="logout.php"  class="btn btn-primary dropdown-toggle sign-up-btn">Wyloguj</a>
         </div>
         </div>');
