@@ -10,6 +10,15 @@
         $result = mysqli_query($conn, $Zapytanie);
         $row = mysqli_fetch_assoc($result);
     }
+    if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_UCZEN){
+        $profil = "uczen=".$_SESSION['Id'];
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_NAUCZYCIEL){
+    $profil = "nauczyciel=".$_SESSION['Id'];
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_OSOBA){
+        $profil = "uzytkownik=".$_SESSION['Id'];
+    } elseif (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_PRACOWNIK){
+        $profil = "pracownik=".$_SESSION['Id'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -113,6 +122,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
          print('
          <div class="navbar-nav ml-auto action-buttons">
 			<div class="nav-item dropdown" style="padding: 5px;">
+            <a href="profil.php?'. $profil .'" class="btn btn-primary dropdown-toggle sign-up-btn">Mój Profil</a>
             <a href="logout.php"  class="btn btn-primary dropdown-toggle sign-up-btn">Wyloguj</a>
         </div>
         </div>');

@@ -40,7 +40,7 @@ require_once('funkcje/link.php');
                     $helena++;
                     echo"<tr><td>".$helena."</td><td>" . $row["Imie"]. "</td>";
                     echo"<td>" . $row["Nazwisko"] . "</td>";
-                    echo"<td><a href='nauczyciel.php?" . $row["nauczycielId"] ."'>" . $row["Email"] . "</a></td><td><input type='checkbox' disabled ";
+                    echo"<td><a href='profil.php?nauczyciel=" . $row["nauczycielId"] ."'>" . $row["Email"] . "</a></td><td><input type='checkbox' disabled ";
                     if ($row['wychowawca']==$row['nauczycielId']){print('checked');}
                     echo"></td>";
                     echo"<td><a href='edytujNauczyciela.php?id=".$row["nauczycielId"]."'><i class='fa fa-pencil-square-o fa-2x' style='padding-right: 5px' aria-hidden='true'></i></a></td>";

@@ -47,7 +47,7 @@ require_once('funkcje/link.php');
                     echo"<tr><td>".$helena."</td>";
                     echo"<td>" . $row["Imie"]. "</td>";
                     echo"<td>" . $row["Nazwisko"] . "</td>";
-                    echo"<td><a href='uczen.php?" . $row["uczenId"] ."'>" . $row["Email"] . "</a></td>";
+                    echo"<td><a href='profil.php?uczen=" . $row["uczenId"] ."'>" . $row["Email"] . "</a></td>";
                     echo"<td><a href='klasa.php?klasa=" . $row["klasaId"] ."'>" . $row["klasa"] . "</a></td>";
                     echo"<td> <a href='edytujUcznia.php?id=".$row["uczenId"]."'><i class='fa fa-pencil-square-o fa-2x' style='padding-right: 5px' aria-hidden='true'></i></a></td>";
                     echo"<td><a href='usunUcznia.php?id=".$row["uczenId"]."'><i class='fa fa-trash fa-2x' style='padding-left: 5px;color: rgb(255,30,30)' aria-hidden='true'></i></a></td></tr>";

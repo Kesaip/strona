@@ -90,6 +90,7 @@ if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == ROLA_PRACOWNIK)
          print('
          <div class="navbar-nav ml-auto action-buttons">
 			<div class="nav-item dropdown" style="padding: 5px;">
+            <a href="profil.php?pracownik='.$_SESSION['Id'].'" class="btn btn-primary dropdown-toggle sign-up-btn">Mój Profil</a>
             <a href="logout.php"  class="btn btn-primary dropdown-toggle sign-up-btn">Wyloguj</a>
         </div>
         </div>');
